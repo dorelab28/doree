@@ -58,5 +58,15 @@
 .cart-promo-box small{font-size:10px;font-weight:900;letter-spacing:.12em;color:var(--gold)}
 .cart-promo-box b{font-size:15px}
 .cart-promo-box span{font-size:12px;color:#617085}
+.drawer{height:100vh;height:100dvh;max-height:100dvh;overflow:hidden}
+.drawer-head{flex:0 0 auto}
+.cart-items{min-height:0;-webkit-overflow-scrolling:touch}
+.cart-footer{flex:0 0 auto;max-height:min(58vh,520px);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.cart-item>div{min-width:0}
+.cart-item small{display:block;line-height:1.35;overflow-wrap:anywhere}
+.remove-item{margin-top:7px;border:0;background:transparent;color:#b14a3a;padding:0;font-size:12px;font-weight:900;text-decoration:underline;cursor:pointer}
+.qty button{display:grid;place-items:center;line-height:1}
 @media(max-width:900px){.roulette-section{grid-template-columns:1fr}.roulette-section:before{border-radius:120px 18px 18px 18px}.roulette-lab{min-height:470px}.promo-wheel{--wheel-size:min(360px,86vw)}}
 @media(max-width:520px){.roulette-section{padding-left:18px;padding-right:18px}.roulette-section:before{inset:12px;border-radius:90px 14px 14px}.roulette-rules{gap:7px}.roulette-rules span{font-size:11px}.roulette-lab{min-height:420px}.promo-wheel{--wheel-size:min(310px,86vw);border-width:9px}.promo-wheel:before{width:88px;height:88px;border-width:6px}.promo-wheel span{width:76px;margin-left:-38px;font-size:9px;transform:rotate(var(--a)) translateY(calc(var(--wheel-size) * -.35)) rotate(calc(var(--a) * -1))}.wheel-center{font-size:22px}.roulette-pointer{font-size:38px;top:8px}.promo-result b{font-size:24px}}
+@media(max-width:720px){.drawer{width:100%;left:0;right:0}.drawer-head{padding:18px 18px 14px}.drawer-head h2{font-size:32px}.cart-items{padding:8px 16px;flex:1 1 auto}.cart-item{grid-template-columns:56px minmax(0,1fr) auto;gap:10px;padding:12px 0}.cart-item img{width:56px;height:56px}.cart-item h4{font-size:15px}.cart-item small{font-size:11px}.qty{gap:6px}.qty button{width:34px;height:34px;background:var(--paper)}.cart-footer{padding:14px 16px calc(18px + env(safe-area-inset-bottom));gap:10px;max-height:52dvh}.cart-total{font-size:18px}.cart-total.final b{font-size:21px}.shipping-box{align-items:flex-start}.shipping-box span{font-size:11px}}
+@media(max-height:680px) and (max-width:720px){.cart-footer{max-height:48dvh}.free-shipping-progress{padding:9px}.cart-footer label{gap:4px}.cart-footer input,.cart-footer select{padding:10px}.shipping-box{padding:10px 12px}}
