@@ -84,7 +84,7 @@
       <div class="cake-intro">
         <p class="eyebrow">Manual de fórmula personalizada</p>
         <h2>Tu torta,<br><em>paso a paso.</em></h2>
-        <p>Armá tu pedido como un experimento: elegí tamaño, sabor, relleno y decoración. Después nos mandás la idea y la terminamos de ajustar por WhatsApp.</p>
+        <p>Armá tu pedido como un experimento: elegí una opción en cada paso. Al final podés agregar detalles extra y mandarnos la fórmula por WhatsApp.</p>
         <div class="cake-warning"><span>⏱</span><b>Pedila con 1 semana de anticipación</b><small>Así podemos coordinar ingredientes, diseño y fecha.</small></div>
         <button class="button primary" type="button" data-open-cake>Quiero crear mi fórmula</button>
       </div>
@@ -99,10 +99,10 @@
           <span class="manual-number">01</span>
           <h3>¿De qué tamaño?</h3>
           <div class="choice-grid sizes">
-            <button type="button" data-cake-preset="Tamaño: 16 cm">16 cm</button>
-            <button type="button" data-cake-preset="Tamaño: 18 cm">18 cm</button>
-            <button type="button" data-cake-preset="Tamaño: 20 cm">20 cm</button>
-            <button type="button" data-cake-preset="Tamaño: 24 cm">24 cm</button>
+            <button type="button" data-cake-choice="size" data-cake-value="16 cm">16 cm</button>
+            <button type="button" data-cake-choice="size" data-cake-value="18 cm">18 cm</button>
+            <button type="button" data-cake-choice="size" data-cake-value="20 cm">20 cm</button>
+            <button type="button" data-cake-choice="size" data-cake-value="24 cm">24 cm</button>
           </div>
           <small>Las porciones dependen de la altura y relleno elegido.</small>
         </article>
@@ -110,37 +110,48 @@
           <span class="manual-number">02</span>
           <h3>¿De qué sabor?</h3>
           <div class="choice-grid flavors">
-            <button type="button" data-cake-preset="Sabor: vainilla">Vainilla</button>
-            <button type="button" data-cake-preset="Sabor: chocolate">Chocolate</button>
-            <button type="button" data-cake-preset="Sabor: marmolado">Marmolado</button>
-            <button type="button" data-cake-preset="Sabor: limón">Limón</button>
-            <button type="button" data-cake-preset="Sabor: naranja">Naranja</button>
+            <button type="button" data-cake-choice="flavor" data-cake-value="Vainilla">Vainilla</button>
+            <button type="button" data-cake-choice="flavor" data-cake-value="Chocolate">Chocolate</button>
+            <button type="button" data-cake-choice="flavor" data-cake-value="Marmolado">Marmolado</button>
+            <button type="button" data-cake-choice="flavor" data-cake-value="Limón">Limón</button>
+            <button type="button" data-cake-choice="flavor" data-cake-value="Naranja">Naranja</button>
           </div>
         </article>
         <article class="manual-card">
           <span class="manual-number">03</span>
           <h3>¿Cuál relleno?</h3>
           <div class="filling-list">
-            <button type="button" data-cake-preset="Relleno: dulce de leche">Dulce de leche</button>
-            <button type="button" data-cake-preset="Relleno: crema chocotorta">Crema chocotorta</button>
-            <button type="button" data-cake-preset="Relleno: crema oreo">Crema Oreo</button>
-            <button type="button" data-cake-preset="Relleno: ganache de Nutella">Ganache de Nutella</button>
-            <button type="button" data-cake-preset="Relleno: ganache de frutos rojos">Frutos rojos</button>
-            <button type="button" data-cake-preset="Relleno: chocolate blanco">Chocolate blanco</button>
+            <button type="button" data-cake-choice="filling" data-cake-value="Dulce de leche">Dulce de leche</button>
+            <button type="button" data-cake-choice="filling" data-cake-value="Crema chocotorta">Crema chocotorta</button>
+            <button type="button" data-cake-choice="filling" data-cake-value="Crema Oreo">Crema Oreo</button>
+            <button type="button" data-cake-choice="filling" data-cake-value="Ganache de Nutella">Ganache de Nutella</button>
+            <button type="button" data-cake-choice="filling" data-cake-value="Ganache de frutos rojos">Frutos rojos</button>
+            <button type="button" data-cake-choice="filling" data-cake-value="Chocolate blanco">Chocolate blanco</button>
           </div>
         </article>
         <article class="manual-card">
           <span class="manual-number">04</span>
           <h3>Ahora a decorar</h3>
           <div class="decor-grid">
-            <button type="button" data-cake-preset="Decoración: infantil">Infantiles</button>
-            <button type="button" data-cake-preset="Decoración: meme">Meme</button>
-            <button type="button" data-cake-preset="Decoración: números">Números</button>
-            <button type="button" data-cake-preset="Decoración: vintage">Vintage</button>
-            <button type="button" data-cake-preset="Decoración: flores">Flores</button>
-            <button type="button" data-cake-preset="Decoración: minimalista">Minimal</button>
+            <button type="button" data-cake-choice="decor" data-cake-value="Infantil">Infantiles</button>
+            <button type="button" data-cake-choice="decor" data-cake-value="Meme">Meme</button>
+            <button type="button" data-cake-choice="decor" data-cake-value="Números">Números</button>
+            <button type="button" data-cake-choice="decor" data-cake-value="Vintage">Vintage</button>
+            <button type="button" data-cake-choice="decor" data-cake-value="Flores">Flores</button>
+            <button type="button" data-cake-choice="decor" data-cake-value="Minimalista">Minimal</button>
           </div>
-          <button class="button secondary manual-cta" type="button" data-cake-preset="Quiero armar una torta personalizada Doré Lab">Mandar mi idea</button>
+        </article>
+        <article class="manual-card formula-summary">
+          <span class="manual-number">✓</span>
+          <h3>Tu fórmula</h3>
+          <div class="formula-lines">
+            <p><b>Tamaño</b><span data-cake-summary="size">Elegí una opción</span></p>
+            <p><b>Sabor</b><span data-cake-summary="flavor">Elegí una opción</span></p>
+            <p><b>Relleno</b><span data-cake-summary="filling">Elegí una opción</span></p>
+            <p><b>Decoración</b><span data-cake-summary="decor">Elegí una opción</span></p>
+          </div>
+          <button class="button primary manual-cta" type="button" data-open-cake-summary disabled>Completar detalles finales</button>
+          <small>Al final podés sumar colores, temática, frase, referencias o cualquier idea extra.</small>
         </article>
       </div>
     </section>
