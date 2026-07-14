@@ -12,7 +12,7 @@
   <script src="app.js" defer></script>
 </head>
 <body>
-  <div class="announcement">🧪 Envíos a CABA y Gran Buenos Aires · Retiros en Tigre y Caseros</div>
+  <div class="announcement">🧪 Envío gratis superando $30.000 · Envíos a CABA y Gran Buenos Aires · Retiros en Tigre y Caseros</div>
   <header class="site-header">
     <a class="brand" href="#inicio" aria-label="Doré Lab, inicio">
       <img src="assets/logo.png" alt="Doré Lab, cocinero y pastelera">
@@ -36,6 +36,11 @@
         <p class="eyebrow">Laboratorio artesanal de cookies</p>
         <h1>Fórmulas dulces.<br><em>Resultados irresistibles.</em></h1>
         <p class="hero-text">Cookies XL cargadas de sabor y tortas hechas a tu medida. Probamos, mezclamos y horneamos felicidad.</p>
+        <a class="free-shipping-hero" href="#cookies" aria-label="Ver cookies para alcanzar el envío gratis">
+          <span>🚚</span>
+          <b>Envío gratis desde $30.000</b>
+          <small>Sumá cookies, boxes o tortas y liberá el beneficio.</small>
+        </a>
         <div class="hero-actions">
           <a class="button primary" href="#cookies">Ver experimentos</a>
           <a class="button secondary" href="#tortas">Crear mi torta</a>
@@ -193,6 +198,11 @@
     <div class="cart-empty" data-cart-empty><span>⚗</span><b>Tu orden está vacía</b><p>Agregá una fórmula para comenzar.</p></div>
     <div class="cart-footer" data-cart-footer>
       <div class="cart-total"><span>Productos</span><b data-cart-subtotal>$0</b></div>
+      <div class="free-shipping-progress" data-free-shipping-progress>
+        <div class="free-shipping-progress-top"><span data-free-shipping-copy>Te faltan $30.000 para envío gratis.</span><b data-free-shipping-percent>0%</b></div>
+        <div class="free-shipping-track" aria-hidden="true"><span data-free-shipping-bar></span></div>
+        <small>Meta de laboratorio: $30.000</small>
+      </div>
       <label>Entrega o retiro
         <select data-delivery><option>Envío a domicilio</option><option>Retiro en Tigre</option><option>Retiro en Caseros</option></select>
       </label>
