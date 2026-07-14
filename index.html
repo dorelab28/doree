@@ -21,6 +21,7 @@
     <nav aria-label="Navegación principal">
       <a href="#cookies">Cookies XL</a>
       <a href="#boxes">Boxes</a>
+      <a href="#ruleta">Ruleta</a>
       <a href="#tortas">Tortas</a>
       <a href="#nosotros">El laboratorio</a>
       <a href="#entregas">Entregas</a>
@@ -75,6 +76,38 @@
           <button type="button" data-open-box="box6"><span>BOX X6 MIXTA</span><b>Desde $27.000</b><small>6 cookies a elección</small></button>
           <button type="button" data-open-box="box6p"><span>BOX X6 PREMIUM</span><b>Desde $30.000</b><small>6 premium o signature</small></button>
         </div>
+      </div>
+    </section>
+
+    <section class="roulette-section section" id="ruleta">
+      <div class="roulette-copy">
+        <p class="eyebrow">Experimento promocional</p>
+        <h2>Girá la ruleta del laboratorio.</h2>
+        <p>Antes de cerrar tu pedido, desbloqueá una promo sorpresa. Te damos un código y lo validamos por WhatsApp al coordinar tu compra.</p>
+        <div class="roulette-rules">
+          <span>1 giro por dispositivo</span>
+          <span>Promos no acumulables</span>
+          <span>Sujeto a disponibilidad</span>
+        </div>
+      </div>
+      <div class="roulette-lab" aria-label="Ruleta de promociones Doré Lab">
+        <div class="roulette-pointer" aria-hidden="true">▼</div>
+        <div class="promo-wheel" data-promo-wheel>
+          <span style="--a:0deg">5% OFF</span>
+          <span style="--a:60deg">$1.000 OFF</span>
+          <span style="--a:120deg">ENVÍO GRATIS</span>
+          <span style="--a:180deg">COOKIE SORPRESA</span>
+          <span style="--a:240deg">10% OFF BOX</span>
+          <span style="--a:300deg">UPGRADE TOPPING</span>
+        </div>
+        <div class="wheel-center" aria-hidden="true">doré<br>lab</div>
+        <button class="button primary" type="button" data-spin-promo>Girar ruleta</button>
+        <div class="promo-result" data-promo-result>
+          <small>RESULTADO DEL ENSAYO</small>
+          <b>Promo por descubrir</b>
+          <span>Presioná girar para iniciar el experimento.</span>
+        </div>
+        <button class="button secondary" type="button" data-use-promo hidden>Usar promo por WhatsApp</button>
       </div>
     </section>
 
@@ -213,6 +246,7 @@
         <span data-shipping-status>Ingresá tu código postal para calcular el envío.</span>
         <b data-shipping-cost>$0</b>
       </div>
+      <div class="cart-promo-box" data-cart-promo hidden></div>
       <div class="cart-total final"><span>Total estimado</span><b data-cart-total>$0</b></div>
       <button class="button whatsapp" type="button" data-checkout>Enviar pedido por WhatsApp</button>
       <small>Envíos a CABA y Gran Buenos Aires desde Caseros y Tigre Centro. Envíos desde $3.000.</small>

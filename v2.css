@@ -33,3 +33,30 @@
 .free-shipping-progress small{font-size:11px;color:#617085;text-align:center}
 .free-shipping-progress.is-complete{border-color:#1f9d5a;background:rgba(31,157,90,.09)}
 .free-shipping-progress.is-complete .free-shipping-progress-top b{color:#1f9d5a}
+.roulette-section{background:linear-gradient(135deg,var(--blue),#0b4d91);color:white;display:grid;grid-template-columns:.82fr 1.18fr;gap:6vw;align-items:center;overflow:hidden;position:relative}
+.roulette-section:before{content:"";position:absolute;inset:24px;border:1px dashed rgba(255,255,255,.22);border-radius:170px 18px 18px 18px;pointer-events:none}
+.roulette-copy,.roulette-lab{position:relative;z-index:1}
+.roulette-copy .eyebrow{color:var(--peach)}
+.roulette-copy h2{font-size:clamp(44px,5vw,76px);max-width:720px}
+.roulette-copy p:not(.eyebrow){font-size:17px;line-height:1.7;max-width:560px;color:rgba(255,255,255,.86)}
+.roulette-rules{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.roulette-rules span{border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:9px 12px;background:rgba(255,255,255,.08);font-size:12px;font-weight:800}
+.roulette-lab{display:grid;justify-items:center;gap:16px;min-height:520px}
+.promo-wheel{--wheel-size:min(430px,78vw);width:var(--wheel-size);aspect-ratio:1;border-radius:50%;position:relative;background:conic-gradient(from -30deg,#f6dfc8 0 60deg,#e4a650 60deg 120deg,#fff8ef 120deg 180deg,#f4c9a8 180deg 240deg,#f6dfc8 240deg 300deg,#ffffff 300deg 360deg);border:12px solid var(--cream);box-shadow:0 24px 70px rgba(0,0,0,.28),inset 0 0 0 2px rgba(7,59,120,.16);transition:transform 4.2s cubic-bezier(.12,.78,.14,1)}
+.promo-wheel:before{content:"";position:absolute;inset:50%;width:112px;height:112px;transform:translate(-50%,-50%);border-radius:50%;background:var(--blue);border:8px solid var(--cream);box-shadow:0 8px 20px rgba(0,0,0,.2);z-index:2}
+.promo-wheel:after{content:"";position:absolute;inset:18px;border:2px dashed rgba(7,59,120,.28);border-radius:50%;pointer-events:none}
+.promo-wheel span{position:absolute;left:50%;top:50%;width:92px;margin-left:-46px;margin-top:-16px;transform:rotate(var(--a)) translateY(calc(var(--wheel-size) * -.36)) rotate(calc(var(--a) * -1));text-align:center;color:var(--blue);font-size:11px;line-height:1.05;font-weight:900;letter-spacing:.04em;text-transform:uppercase;z-index:1}
+.roulette-pointer{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:4;color:var(--gold);font-size:46px;filter:drop-shadow(0 4px 0 rgba(0,0,0,.12))}
+.wheel-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;color:white;text-align:center;font-weight:900;line-height:.85;font-size:28px;letter-spacing:-.03em;pointer-events:none}
+.roulette-lab .button{min-width:190px}
+.promo-result{width:min(460px,100%);border:1px solid rgba(255,255,255,.32);background:rgba(255,255,255,.1);border-radius:18px;padding:16px 18px;text-align:center;display:grid;gap:5px}
+.promo-result small{font-size:10px;letter-spacing:.14em;color:var(--peach);font-weight:900}
+.promo-result b{font-family:Georgia,"Times New Roman",serif;font-size:28px}
+.promo-result span{font-size:13px;color:rgba(255,255,255,.82);line-height:1.4}
+.promo-result.is-winner{background:rgba(255,255,255,.17);border-color:var(--peach);box-shadow:0 12px 34px rgba(0,0,0,.18)}
+.cart-promo-box{border:1px solid var(--gold);background:rgba(225,166,80,.12);border-radius:14px;padding:12px 14px;display:grid;gap:3px;color:var(--blue)}
+.cart-promo-box small{font-size:10px;font-weight:900;letter-spacing:.12em;color:var(--gold)}
+.cart-promo-box b{font-size:15px}
+.cart-promo-box span{font-size:12px;color:#617085}
+@media(max-width:900px){.roulette-section{grid-template-columns:1fr}.roulette-section:before{border-radius:120px 18px 18px 18px}.roulette-lab{min-height:470px}.promo-wheel{--wheel-size:min(360px,86vw)}}
+@media(max-width:520px){.roulette-section{padding-left:18px;padding-right:18px}.roulette-section:before{inset:12px;border-radius:90px 14px 14px}.roulette-rules{gap:7px}.roulette-rules span{font-size:11px}.roulette-lab{min-height:420px}.promo-wheel{--wheel-size:min(310px,86vw);border-width:9px}.promo-wheel:before{width:88px;height:88px;border-width:6px}.promo-wheel span{width:76px;margin-left:-38px;font-size:9px;transform:rotate(var(--a)) translateY(calc(var(--wheel-size) * -.35)) rotate(calc(var(--a) * -1))}.wheel-center{font-size:22px}.roulette-pointer{font-size:38px;top:8px}.promo-result b{font-size:24px}}
