@@ -80,20 +80,68 @@
       <div><span>04</span><b>Validamos</b><small>felicidad en cada bocado</small></div>
     </section>
 
-    <section class="section cakes-section" id="tortas">
+    <section class="section cakes-section custom-cake-lab" id="tortas">
       <div class="cake-intro">
-        <p class="eyebrow">Fórmula a medida</p>
-        <h2>Tu idea,<br><em>nuestra próxima creación.</em></h2>
-        <p>Elegí sabores, tamaño, estética y fecha. Cada torta se cotiza especialmente para que sea exactamente como la imaginaste.</p>
-        <button class="button primary" type="button" data-open-cake>Solicitar presupuesto</button>
+        <p class="eyebrow">Manual de fórmula personalizada</p>
+        <h2>Tu torta,<br><em>paso a paso.</em></h2>
+        <p>Armá tu pedido como un experimento: elegí tamaño, sabor, relleno y decoración. Después nos mandás la idea y la terminamos de ajustar por WhatsApp.</p>
+        <div class="cake-warning"><span>⏱</span><b>Pedila con 1 semana de anticipación</b><small>Así podemos coordinar ingredientes, diseño y fecha.</small></div>
+        <button class="button primary" type="button" data-open-cake>Quiero crear mi fórmula</button>
       </div>
-      <div class="cake-gallery" aria-label="Galería de tortas Doré Lab">
-        <img src="assets/cake-opera.png" alt="Torta Ópera Noir">
-        <img src="assets/cake-passion.png" alt="Torta de maracuyá y frutas">
-        <img src="assets/cake-frutos-rojos.png" alt="Torta de frutos rojos">
-        <img src="assets/cake-cheesecake.png" alt="Cheesecake New York">
-        <img src="assets/cake-argentina.png" alt="Gateau Argentina">
-        <img src="assets/cake-lemon.png" alt="Lemon pie">
+      <div class="cake-manual" aria-label="Manual para pedir una torta personalizada">
+        <article class="manual-card main-card">
+          <span class="manual-number">00</span>
+          <h3>Torta personalizada</h3>
+          <p>Una creación hecha para vos: tamaño, sabor, relleno y decoración definidos a medida.</p>
+          <div class="manual-pills"><span>Tamaño</span><span>Sabor</span><span>Relleno</span><span>Decoración</span></div>
+        </article>
+        <article class="manual-card">
+          <span class="manual-number">01</span>
+          <h3>¿De qué tamaño?</h3>
+          <div class="choice-grid sizes">
+            <button type="button" data-cake-preset="Tamaño: 16 cm">16 cm</button>
+            <button type="button" data-cake-preset="Tamaño: 18 cm">18 cm</button>
+            <button type="button" data-cake-preset="Tamaño: 20 cm">20 cm</button>
+            <button type="button" data-cake-preset="Tamaño: 24 cm">24 cm</button>
+          </div>
+          <small>Las porciones dependen de la altura y relleno elegido.</small>
+        </article>
+        <article class="manual-card">
+          <span class="manual-number">02</span>
+          <h3>¿De qué sabor?</h3>
+          <div class="choice-grid flavors">
+            <button type="button" data-cake-preset="Sabor: vainilla">Vainilla</button>
+            <button type="button" data-cake-preset="Sabor: chocolate">Chocolate</button>
+            <button type="button" data-cake-preset="Sabor: marmolado">Marmolado</button>
+            <button type="button" data-cake-preset="Sabor: limón">Limón</button>
+            <button type="button" data-cake-preset="Sabor: naranja">Naranja</button>
+          </div>
+        </article>
+        <article class="manual-card">
+          <span class="manual-number">03</span>
+          <h3>¿Cuál relleno?</h3>
+          <div class="filling-list">
+            <button type="button" data-cake-preset="Relleno: dulce de leche">Dulce de leche</button>
+            <button type="button" data-cake-preset="Relleno: crema chocotorta">Crema chocotorta</button>
+            <button type="button" data-cake-preset="Relleno: crema oreo">Crema Oreo</button>
+            <button type="button" data-cake-preset="Relleno: ganache de Nutella">Ganache de Nutella</button>
+            <button type="button" data-cake-preset="Relleno: ganache de frutos rojos">Frutos rojos</button>
+            <button type="button" data-cake-preset="Relleno: chocolate blanco">Chocolate blanco</button>
+          </div>
+        </article>
+        <article class="manual-card">
+          <span class="manual-number">04</span>
+          <h3>Ahora a decorar</h3>
+          <div class="decor-grid">
+            <button type="button" data-cake-preset="Decoración: infantil">Infantiles</button>
+            <button type="button" data-cake-preset="Decoración: meme">Meme</button>
+            <button type="button" data-cake-preset="Decoración: números">Números</button>
+            <button type="button" data-cake-preset="Decoración: vintage">Vintage</button>
+            <button type="button" data-cake-preset="Decoración: flores">Flores</button>
+            <button type="button" data-cake-preset="Decoración: minimalista">Minimal</button>
+          </div>
+          <button class="button secondary manual-cta" type="button" data-cake-preset="Quiero armar una torta personalizada Doré Lab">Mandar mi idea</button>
+        </article>
       </div>
     </section>
 
