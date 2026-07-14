@@ -12,7 +12,7 @@
   <script src="app.js" defer></script>
 </head>
 <body>
-  <div class="announcement">🧪 Envíos en Zona Norte y CABA · Retiros en Tigre y Caseros</div>
+  <div class="announcement">🧪 Envíos a CABA y Gran Buenos Aires · Retiros en Tigre y Caseros</div>
   <header class="site-header">
     <a class="brand" href="#inicio" aria-label="Doré Lab, inicio">
       <img src="assets/logo.png" alt="Doré Lab, cocinero y pastelera">
@@ -170,10 +170,10 @@
       <div class="delivery-copy">
         <p class="eyebrow">Coordenadas de entrega</p>
         <h2>Tu dosis, donde te quede mejor.</h2>
-        <p>Coordinamos cada pedido por WhatsApp. El costo de envío se calcula según la ubicación.</p>
+        <p>Envíos a CABA y Gran Buenos Aires desde Caseros y Tigre Centro. El valor se calcula según la localidad y el punto de salida disponible más cercano. Envíos desde $3.000 y gratis en compras mayores a $30.000.</p>
       </div>
       <div class="delivery-cards">
-        <article><span>🚚</span><div><b>Envíos</b><p>Zona Norte y CABA</p></div></article>
+        <article><span>🚚</span><div><b>Envíos</b><p>CABA y Gran Buenos Aires</p></div></article>
         <article><span>📍</span><div><b>Retiro Tigre</b><p>Con coordinación previa</p></div></article>
         <article><span>📍</span><div><b>Retiro Caseros</b><p>Con coordinación previa</p></div></article>
       </div>
@@ -192,12 +192,20 @@
     <div class="cart-items" data-cart-items></div>
     <div class="cart-empty" data-cart-empty><span>⚗</span><b>Tu orden está vacía</b><p>Agregá una fórmula para comenzar.</p></div>
     <div class="cart-footer" data-cart-footer>
-      <div class="cart-total"><span>Total</span><b data-cart-total>$0</b></div>
+      <div class="cart-total"><span>Productos</span><b data-cart-subtotal>$0</b></div>
       <label>Entrega o retiro
-        <select data-delivery><option>Envío Zona Norte</option><option>Envío CABA</option><option>Retiro en Tigre</option><option>Retiro en Caseros</option></select>
+        <select data-delivery><option>Envío a domicilio</option><option>Retiro en Tigre</option><option>Retiro en Caseros</option></select>
       </label>
+      <label data-postal-wrap>Código postal
+        <input data-postal-code inputmode="numeric" autocomplete="postal-code" maxlength="8" placeholder="Ej: 1648 o C1425">
+      </label>
+      <div class="shipping-box" data-shipping-box>
+        <span data-shipping-status>Ingresá tu código postal para calcular el envío.</span>
+        <b data-shipping-cost>$0</b>
+      </div>
+      <div class="cart-total final"><span>Total estimado</span><b data-cart-total>$0</b></div>
       <button class="button whatsapp" type="button" data-checkout>Enviar pedido por WhatsApp</button>
-      <small>El envío se cotiza según ubicación.</small>
+      <small>Envíos a CABA y Gran Buenos Aires desde Caseros y Tigre Centro. Envíos desde $3.000.</small>
     </div>
   </aside>
   <div class="overlay" data-overlay></div>
