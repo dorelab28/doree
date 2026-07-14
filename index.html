@@ -9,7 +9,10 @@
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="v2.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="supabase-client.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="club.js" defer></script>
 </head>
 <body>
   <div class="announcement">🧪 Envío gratis superando $30.000 · Envíos a CABA y Gran Buenos Aires · Retiros en Tigre y Caseros</div>
@@ -22,13 +25,17 @@
       <a href="#cookies">Cookies XL</a>
       <a href="#boxes">Boxes</a>
       <a href="#ruleta">Ruleta</a>
+      <a href="#club">Club</a>
       <a href="#tortas">Tortas</a>
       <a href="#nosotros">El laboratorio</a>
       <a href="#entregas">Entregas</a>
     </nav>
-    <button class="cart-button" type="button" data-open-cart aria-label="Abrir carrito">
-      <span>Orden</span><b data-cart-count>0</b>
-    </button>
+    <div class="header-actions">
+      <button class="club-button" type="button" data-open-club>Club</button>
+      <button class="cart-button" type="button" data-open-cart aria-label="Abrir carrito">
+        <span>Orden</span><b data-cart-count>0</b>
+      </button>
+    </div>
   </header>
 
   <main>
@@ -54,6 +61,29 @@
         <img src="assets/box-hero.jpeg" alt="Box Doré Lab con cookies XL recién horneadas">
         <div class="hero-label"><small>NUEVA DOSIS</small><b>Armá tu propia box</b><a href="#boxes">Empezar →</a></div>
         <div class="float-badge">Hechas hoy<br><b>para vos</b></div>
+      </div>
+    </section>
+
+    <section class="club-section section" id="club">
+      <div class="club-copy">
+        <p class="eyebrow">Pasaporte de experimentos</p>
+        <h2>Club Doré Lab</h2>
+        <p>Cada compra confirmada suma un sello. Cuando completás 5 experimentos aprobados, desbloqueás una Box X3 clásica de regalo.</p>
+        <div class="club-actions">
+          <button class="button primary" type="button" data-open-club>Crear mi cuenta</button>
+          <small>El premio se activa solo con compras confirmadas por el laboratorio.</small>
+        </div>
+      </div>
+      <div class="club-card" data-club-card>
+        <small>ESTADO DEL ENSAYO</small>
+        <h3 data-club-title>Ingresá para ver tu progreso</h3>
+        <div class="club-progress" aria-label="Progreso hacia Box X3 de regalo">
+          <span data-club-bar style="width:0%"></span>
+        </div>
+        <p data-club-copy>Guardamos tus compras confirmadas y te avisamos cuando llegás a 5.</p>
+        <div class="club-stamps" data-club-stamps aria-hidden="true">
+          <span>⚗</span><span>⚗</span><span>⚗</span><span>⚗</span><span>🎁</span>
+        </div>
       </div>
     </section>
 
@@ -297,6 +327,41 @@
       <label>Contanos cómo la imaginás<textarea name="idea" rows="4" placeholder="Colores, temática, decoración..."></textarea></label>
       <button class="button whatsapp" type="submit">Consultar por WhatsApp</button>
     </form>
+  </dialog>
+
+  <dialog class="club-modal" data-club-modal>
+    <button class="modal-close" type="button" data-close-club aria-label="Cerrar">×</button>
+    <div data-club-auth-view>
+      <p class="eyebrow">Club Doré Lab</p>
+      <h2>Tu pasaporte dulce</h2>
+      <p>Creá tu cuenta o ingresá para guardar tus experimentos aprobados.</p>
+      <form data-club-form>
+        <label>Nombre<input name="name" type="text" autocomplete="name" placeholder="Ej: Mateo"></label>
+        <label>WhatsApp<input name="whatsapp" type="tel" autocomplete="tel" placeholder="Ej: 1135231567"></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required placeholder="tu@email.com"></label>
+        <label>Contraseña<input name="password" type="password" autocomplete="current-password" required minlength="6" placeholder="Mínimo 6 caracteres"></label>
+        <div class="club-form-actions">
+          <button class="button primary" type="submit" data-club-submit="signup">Crear cuenta</button>
+          <button class="button secondary" type="button" data-club-login>Ya tengo cuenta</button>
+        </div>
+      </form>
+      <p class="club-message" data-club-message></p>
+    </div>
+    <div data-club-profile-view hidden>
+      <p class="eyebrow">Experimento en curso</p>
+      <h2 data-club-profile-name>Club Doré Lab</h2>
+      <div class="club-profile-panel">
+        <b data-club-profile-progress>0 / 5 compras</b>
+        <div class="club-progress"><span data-club-modal-bar style="width:0%"></span></div>
+        <p data-club-profile-copy>Te faltan 5 compras confirmadas para desbloquear tu Box X3 clásica.</p>
+      </div>
+      <div class="club-reward" data-club-reward hidden>
+        <small>PREMIO DESBLOQUEADO</small>
+        <b>Box X3 clásica de regalo</b>
+        <span>Coordinamos la entrega por WhatsApp.</span>
+      </div>
+      <button class="button secondary" type="button" data-club-logout>Cerrar sesión</button>
+    </div>
   </dialog>
 
   <a class="whatsapp-float" href="https://wa.me/5491135231567" target="_blank" rel="noreferrer" aria-label="Escribir a Doré Lab por WhatsApp">✆</a>
