@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073b78">
+  <meta name="description" content="Doré Bars: chocolate, cookie y toppings en una sola pieza.">
+  <title>Doré Lab | Doré Bars</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="v2.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="supabase-client.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="club.js" defer></script>
+</head>
+<body class="page-bars">
+  <div class="announcement">🧪 Envío gratis superando $30.000 · Envíos a CABA y Gran Buenos Aires · Retiros en Tigre y Caseros</div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Doré Lab, inicio"><img src="assets/logo.png" alt="Doré Lab, cocinero y pastelera"><span><b>doré lab</b><small>dulces experimentos</small></span></a>
+    <nav aria-label="Navegación principal"><a href="cookies.html">Cookies XL</a><a href="bars.html" aria-current="page">Doré Bars</a><a href="boxes.html">Boxes</a><a href="index.html#ruleta">Ruleta</a><a href="index.html#club">Club</a><a href="tortas.html">Tortas</a><a href="entregas.html">Entregas</a></nav>
+    <div class="header-actions"><button class="club-button" type="button" data-open-club>Club</button><button class="cart-button" type="button" data-open-cart aria-label="Abrir carrito"><span>Orden</span><b data-cart-count>0</b></button></div>
+  </header>
+  <main>
+    <section class="hero bars-hero">
+      <div class="hero-copy"><p class="eyebrow">Expediente 002 · nueva fórmula</p><h1>Doré Bars.<br><em>Chocolate, cookie y toppings.</em></h1><p class="hero-text">Nueva fórmula en desarrollo: barras de chocolate artesanal hechas en molde, combinadas con nuestras cookies Doré Lab.</p><div class="bars-formats" aria-label="Formatos y precios de Doré Bars"><article><b>♥ Doré Bar Corazón</b><span>Molde de aprox. 150 ml · chocolate, cookie y toppings.</span><strong>$7.000</strong></article><article><b>▭ Doré Bar Rectangular</b><span>Molde de aprox. 110 ml · chocolate, cookie y toppings.</span><strong>$6.000</strong></article></div><div class="hero-actions"><a class="button primary" href="#sabores">Elegir una Doré Bar</a><a class="button secondary" href="entregas.html">Ver entregas</a></div></div>
+      <div class="hero-visual hero-photo"><img src="assets/bar-frutilla.jpeg" alt="Doré Bar de chocolate negro, cookie de vainilla y jalea de frutilla"><div class="hero-label"><small>NUEVA DOSIS</small><b>Doré Bars</b><a href="#sabores">Ver sabores →</a></div><div class="float-badge">Hechas con<br><b>cookies Doré</b></div></div>
+    </section>
+    <section class="section bars-section" id="sabores"><div class="section-heading"><div><p class="eyebrow">Catálogo de fórmulas</p><h2>Elegí tu Doré Bar.</h2></div><p>Seleccioná el sabor y el formato. Los precios quedan visibles y se agregan a la misma orden de Doré Lab.</p></div><div class="bars-grid" data-bar-grid aria-live="polite"></div></section>
+    <section class="lab-strip" aria-label="Información de Doré Bars"><div><span>⚗</span><b>Chocolate artesanal</b><small>Hechas en molde, una por una.</small></div><div><span>🍪</span><b>Cookie Doré Lab</b><small>Parte de cada nueva fórmula.</small></div><div><span>✦</span><b>Toppings según sabor</b><small>Los detalles de cada barra están en su ficha.</small></div><div><span>✓</span><b>Lista para pedir</b><small>Sumala a tu orden habitual.</small></div></section>
+  </main>
+  <footer><div class="footer-brand"><img src="assets/logo.png" alt=""><p>Dulces experimentos,<br>hechos con amor.</p></div><div><b>Explorá</b><a href="cookies.html">Cookies XL</a><a href="bars.html">Doré Bars</a><a href="tortas.html">Tortas personalizadas</a></div><div><b>Contacto</b><a href="https://wa.me/5491135231567" target="_blank" rel="noreferrer">WhatsApp</a><a href="https://instagram.com/dore_lab" target="_blank" rel="noreferrer">@dore_lab</a></div><small>© 2026 Doré Lab · Experimento aprobado</small></footer>
+  <aside class="drawer" data-cart-drawer aria-hidden="true" aria-label="Tu orden"><div class="drawer-head"><div><small>EXPEDIENTE DE COMPRA</small><h2>Tu orden</h2></div><button type="button" data-close-cart aria-label="Cerrar">×</button></div><div class="cart-items" data-cart-items></div><div class="cart-empty" data-cart-empty><span>⚗</span><b>Tu orden está vacía</b><p>Agregá una fórmula para comenzar.</p></div><div class="cart-footer" data-cart-footer><div class="cart-total"><span>Productos</span><b data-cart-subtotal>$0</b></div><div class="free-shipping-progress" data-free-shipping-progress><div class="free-shipping-progress-top"><span data-free-shipping-copy>Te faltan $30.000 para envío gratis.</span><b data-free-shipping-percent>0%</b></div><div class="free-shipping-track" aria-hidden="true"><span data-free-shipping-bar></span></div><small>Meta de laboratorio: $30.000</small></div><label>Entrega o retiro<select data-delivery><option>Envío a domicilio</option><option>Retiro en Tigre</option><option>Retiro en Caseros</option></select></label><label data-postal-wrap>Código postal<input data-postal-code inputmode="numeric" autocomplete="postal-code" maxlength="8" placeholder="Ej: 1648 o C1425"></label><div class="shipping-box" data-shipping-box><span data-shipping-status>Ingresá tu código postal para calcular el envío.</span><b data-shipping-cost>$0</b></div><div class="cart-promo-box" data-cart-promo hidden></div><div class="cart-total final"><span>Total estimado</span><b data-cart-total>$0</b></div><button class="button whatsapp" type="button" data-checkout>Enviar pedido por WhatsApp</button><small>Envíos a CABA y Gran Buenos Aires desde Caseros y Tigre Centro. Envíos desde $3.000.</small></div></aside>
+  <div class="overlay" data-overlay></div><a class="whatsapp-float" href="https://wa.me/5491135231567" target="_blank" rel="noreferrer" aria-label="Escribir a Doré Lab por WhatsApp">✆</a>
+</body>
+</html>
