@@ -12,6 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="supabase-client.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="cake-builder.js" defer></script>
   <script src="club.js" defer></script>
 </head>
 <body class="page-tortas">
@@ -162,79 +163,49 @@
       <div><span>04</span><b>Validamos</b><small>felicidad en cada bocado</small></div>
     </section>
 
-    <section class="section cakes-section custom-cake-lab" id="tortas">
-      <div class="cake-intro">
-        <p class="eyebrow">Manual de fórmula personalizada</p>
-        <h2>Tu torta,<br><em>paso a paso.</em></h2>
-        <p>Armá tu pedido como un experimento: elegí una opción en cada paso. Al final podés agregar detalles extra y mandarnos la fórmula por WhatsApp.</p>
-        <div class="cake-warning"><span>⏱</span><b>Pedila con 1 semana de anticipación</b><small>Así podemos coordinar ingredientes, diseño y fecha.</small></div>
-        <button class="button primary" type="button" data-open-cake>Quiero crear mi fórmula</button>
+    <section class="cake-builder" id="tortas" data-cake-builder aria-label="Constructor de Tortas Doré Lab">
+      <div class="cake-builder-start" data-builder-start>
+        <div class="cake-builder-start-copy">
+          <p class="eyebrow">EXPEDIENTE DE PASTELERÍA · 008</p>
+          <h1>Creá tu<br><em>torta.</em></h1>
+          <p>Entrá al laboratorio y diseñá tu torta desde cero. Elegí cada componente, mirá cómo cambia al instante y guardá tu fórmula.</p>
+          <div class="cake-builder-note"><span>⏱</span><div><b>Pedila con 1 semana de anticipación</b><small>Así coordinamos ingredientes, diseño y fecha con el laboratorio.</small></div></div>
+          <button class="button primary cake-start-button" type="button" data-builder-start-button>🧪 Empezar experimento</button>
+          <small class="cake-builder-disclaimer">Las opciones y los importes que requieran confirmación se validan con Doré Lab antes de elaborar.</small>
+        </div>
+        <div class="cake-builder-start-art" aria-hidden="true">
+          <span class="start-doodle doodle-star">✦</span><span class="start-doodle doodle-flask">⚗</span><span class="start-doodle doodle-spark">✧</span>
+          <div class="start-cake-card"><small>MUESTRA INICIAL</small><div class="start-cake"><i></i><b></b><em></em></div><strong>tu fórmula<br>empieza acá</strong></div>
+        </div>
       </div>
-      <div class="cake-manual" aria-label="Manual para pedir una torta personalizada">
-        <article class="manual-card main-card">
-          <span class="manual-number">00</span>
-          <h3>Torta<br><span>personalizada</span></h3>
-          <p>Una creación hecha para vos: tamaño, sabor, relleno y decoración definidos a medida.</p>
-          <div class="manual-pills"><span>Tamaño</span><span>Sabor</span><span>Relleno</span><span>Decoración</span></div>
-        </article>
-        <article class="manual-card">
-          <span class="manual-number">01</span>
-          <h3>¿De qué tamaño?</h3>
-          <div class="choice-grid sizes">
-            <button type="button" data-cake-choice="size" data-cake-value="16 cm"><span class="option-visual cake-size s16"></span><span>16 cm</span></button>
-            <button type="button" data-cake-choice="size" data-cake-value="18 cm"><span class="option-visual cake-size s18"></span><span>18 cm</span></button>
-            <button type="button" data-cake-choice="size" data-cake-value="20 cm"><span class="option-visual cake-size s20"></span><span>20 cm</span></button>
-            <button type="button" data-cake-choice="size" data-cake-value="24 cm"><span class="option-visual cake-size s24"></span><span>24 cm</span></button>
+
+      <div class="cake-builder-workspace" data-builder-workspace hidden>
+        <aside class="cake-preview-panel" aria-label="Vista previa de tu torta">
+          <div class="cake-preview-head"><div><small>VISTA PREVIA EN VIVO</small><h2>Tu torta</h2></div><span>🧪</span></div>
+          <div class="cake-stage" data-cake-preview>
+            <span class="cake-stage-spark spark-one">✦</span><span class="cake-stage-spark spark-two">✧</span>
+            <div class="cake-preview-plate"></div>
+            <div class="cake-preview-body" data-preview-cake>
+              <div class="cake-preview-top"></div><div class="cake-preview-icing"></div><div class="cake-preview-sponge"></div><div class="cake-preview-filling"></div>
+              <div class="cake-preview-number" data-preview-number aria-label="Número elegido"></div><div class="cake-preview-decorations" data-preview-decorations aria-hidden="true"></div>
+            </div>
           </div>
-          <small>Las porciones dependen de la altura y relleno elegido.</small>
-        </article>
-        <article class="manual-card">
-          <span class="manual-number">02</span>
-          <h3>¿De qué sabor?</h3>
-          <div class="choice-grid flavors">
-            <button type="button" data-cake-choice="flavor" data-cake-value="Vainilla"><span class="option-visual cake-slice vanilla"></span><span>Vainilla</span></button>
-            <button type="button" data-cake-choice="flavor" data-cake-value="Chocolate"><span class="option-visual cake-slice chocolate"></span><span>Chocolate</span></button>
-            <button type="button" data-cake-choice="flavor" data-cake-value="Marmolado"><span class="option-visual cake-slice marble"></span><span>Marmolado</span></button>
-            <button type="button" data-cake-choice="flavor" data-cake-value="Limón"><span class="option-visual cake-slice lemon"></span><span>Limón</span></button>
-            <button type="button" data-cake-choice="flavor" data-cake-value="Naranja"><span class="option-visual cake-slice orange"></span><span>Naranja</span></button>
-          </div>
-        </article>
-        <article class="manual-card">
-          <span class="manual-number">03</span>
-          <h3>¿Cuál relleno?</h3>
-          <div class="filling-list">
-            <button type="button" data-cake-choice="filling" data-cake-value="Dulce de leche"><span class="filling-chip ddl"></span><span>Dulce de leche</span></button>
-            <button type="button" data-cake-choice="filling" data-cake-value="Crema chocotorta"><span class="filling-chip chocotorta"></span><span>Crema chocotorta</span></button>
-            <button type="button" data-cake-choice="filling" data-cake-value="Crema Oreo"><span class="filling-chip oreo"></span><span>Crema Oreo</span></button>
-            <button type="button" data-cake-choice="filling" data-cake-value="Ganache de Nutella"><span class="filling-chip nutella"></span><span>Ganache de Nutella</span></button>
-            <button type="button" data-cake-choice="filling" data-cake-value="Ganache de frutos rojos"><span class="filling-chip frutos"></span><span>Frutos rojos</span></button>
-            <button type="button" data-cake-choice="filling" data-cake-value="Chocolate blanco"><span class="filling-chip blanco"></span><span>Chocolate blanco</span></button>
-          </div>
-        </article>
-        <article class="manual-card">
-          <span class="manual-number">04</span>
-          <h3>Ahora a decorar</h3>
-          <div class="decor-grid">
-            <button type="button" data-cake-choice="decor" data-cake-value="Infantil"><span class="option-visual decor-icon kids"></span><span>Infantiles</span></button>
-            <button type="button" data-cake-choice="decor" data-cake-value="Meme"><span class="option-visual decor-icon meme"></span><span>Meme</span></button>
-            <button type="button" data-cake-choice="decor" data-cake-value="Números"><span class="option-visual decor-icon number"></span><span>Números</span></button>
-            <button type="button" data-cake-choice="decor" data-cake-value="Vintage"><span class="option-visual decor-icon vintage"></span><span>Vintage</span></button>
-            <button type="button" data-cake-choice="decor" data-cake-value="Flores"><span class="option-visual decor-icon flowers"></span><span>Flores</span></button>
-            <button type="button" data-cake-choice="decor" data-cake-value="Minimalista"><span class="option-visual decor-icon minimal"></span><span>Minimal</span></button>
-          </div>
-        </article>
-        <article class="manual-card formula-summary">
-          <span class="manual-number">✓</span>
-          <h3>Tu fórmula</h3>
-          <div class="formula-lines">
-            <p><b>Tamaño</b><span data-cake-summary="size">Elegí una opción</span></p>
-            <p><b>Sabor</b><span data-cake-summary="flavor">Elegí una opción</span></p>
-            <p><b>Relleno</b><span data-cake-summary="filling">Elegí una opción</span></p>
-            <p><b>Decoración</b><span data-cake-summary="decor">Elegí una opción</span></p>
-          </div>
-          <button class="button primary manual-cta" type="button" data-open-cake-summary disabled>Completar detalles finales</button>
-          <small>Al final podés sumar colores, temática, frase, referencias o cualquier idea extra.</small>
-        </article>
+          <div class="cake-live-status" data-builder-status>Esperando tu primera fórmula.</div>
+          <div class="cake-price-card" aria-live="polite"><small>TOTAL ESTIMADO</small><b data-builder-total>A cotizar</b><div data-builder-price-lines></div></div>
+        </aside>
+
+        <div class="cake-builder-controls">
+          <div class="cake-builder-progress"><span data-builder-progress-label>01 / 08</span><div aria-hidden="true"><i data-builder-progress-bar></i></div><small data-builder-step-label>Elegí el tamaño</small></div>
+          <div class="cake-step-copy"><p class="eyebrow" data-builder-eyebrow>PRIMER COMPONENTE</p><h2 data-builder-title>Elegí el tamaño</h2><p data-builder-description>Las medidas disponibles del laboratorio. Las porciones se confirman según altura y relleno.</p></div>
+          <div class="cake-option-grid" data-cake-options aria-live="polite"></div>
+          <p class="cake-step-feedback" data-builder-feedback>Seleccioná una opción para continuar.</p>
+          <div class="cake-builder-nav"><button class="button secondary" type="button" data-builder-prev>← Atrás</button><button class="button primary" type="button" data-builder-next>Siguiente →</button></div>
+        </div>
+      </div>
+
+      <div class="cake-builder-complete" data-builder-complete hidden>
+        <div class="cake-complete-copy"><p class="eyebrow">RESULTADO DEL ENSAYO</p><h2>🧪 Experimento<br><em>completado.</em></h2><p>Esta es tu creación Doré Lab. Guardala en tu orden y el laboratorio confirma los últimos detalles antes de prepararla.</p><div class="cake-complete-actions"><button class="button primary" type="button" data-builder-add>Agregar al pedido</button><button class="button secondary" type="button" data-builder-edit>Volver a editar</button><button class="cake-share-button" type="button" data-builder-share>Compartir mi creación ↗</button></div></div>
+        <div class="cake-complete-card"><small>FÓRMULA REGISTRADA</small><div class="cake-complete-preview" data-complete-preview></div><div class="cake-complete-summary" data-builder-summary></div><div class="cake-complete-total"><span>Total estimado</span><b data-builder-complete-total>A cotizar</b></div></div>
       </div>
     </section>
 
