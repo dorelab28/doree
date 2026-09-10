@@ -59,14 +59,14 @@
   };
 
   const STEPS = [
-    { key: 'size', source: 'sizes', eyebrow: 'PRIMER COMPONENTE', title: 'Elegí el tamaño', description: 'Las medidas disponibles del laboratorio. Las porciones se confirman según altura y relleno.', required: true },
-    { key: 'shape', source: 'shapes', eyebrow: 'GEOMETRÍA DEL MOLDE', title: 'Elegí la forma', description: 'Elegí una silueta para la vista previa. La disponibilidad final se confirma con el laboratorio.', required: true },
-    { key: 'flavor', source: 'flavors', eyebrow: 'FÓRMULA BASE', title: 'Elegí el sabor', description: 'Estas son las bases que ya estaban disponibles para tu torta personalizada.', required: true },
-    { key: 'fillings', source: 'fillings', eyebrow: 'CENTRO DEL EXPERIMENTO', title: 'Elegí el relleno', description: 'Podés combinar hasta dos rellenos disponibles para contarle tu idea al laboratorio.', multiple: true, max: 2, required: true },
-    { key: 'coating', source: 'coatings', eyebrow: 'CAPA EXTERIOR', title: 'Elegí la cobertura', description: 'Elegí el acabado de referencia. El laboratorio valida la combinación antes de producirla.', required: true },
-    { key: 'color', source: 'colors', eyebrow: 'PALETA DEL LAB', title: 'Elegí el color', description: 'Probá una paleta Doré Lab y mirá el cambio en la torta al instante.', required: true },
-    { key: 'numbers', source: 'numbers', eyebrow: 'DETALLE ESPECIAL', title: '¿Qué número querés?', description: 'Elegí uno o dos números. Si no lleva edad, podés seguir sin seleccionar ninguno.', multiple: true, max: 2, required: false },
-    { key: 'decorations', source: 'decorations', eyebrow: 'TOQUE FINAL', title: 'Elegí la decoración', description: 'Combiná hasta dos estilos que ya estaban disponibles en el pedido personalizado.', multiple: true, max: 2, required: false }
+    { key: 'size', source: 'sizes', summaryLabel: 'Tamaño', eyebrow: 'PRIMER COMPONENTE', title: 'Elegí el tamaño', description: 'Las medidas disponibles del laboratorio. Las porciones se confirman según altura y relleno.', required: true },
+    { key: 'shape', source: 'shapes', summaryLabel: 'Forma', eyebrow: 'GEOMETRÍA DEL MOLDE', title: 'Elegí la forma', description: 'Elegí una silueta para la vista previa. La disponibilidad final se confirma con el laboratorio.', required: true },
+    { key: 'flavor', source: 'flavors', summaryLabel: 'Sabor', eyebrow: 'FÓRMULA BASE', title: 'Elegí el sabor', description: 'Estas son las bases que ya estaban disponibles para tu torta personalizada.', required: true },
+    { key: 'fillings', source: 'fillings', summaryLabel: 'Relleno', eyebrow: 'CENTRO DEL EXPERIMENTO', title: 'Elegí el relleno', description: 'Podés combinar hasta dos rellenos disponibles para contarle tu idea al laboratorio.', multiple: true, max: 2, required: true },
+    { key: 'coating', source: 'coatings', summaryLabel: 'Cobertura', eyebrow: 'CAPA EXTERIOR', title: 'Elegí la cobertura', description: 'Elegí el acabado de referencia. El laboratorio valida la combinación antes de producirla.', required: true },
+    { key: 'color', source: 'colors', summaryLabel: 'Color', eyebrow: 'PALETA DEL LAB', title: 'Elegí el color', description: 'Probá una paleta Doré Lab y mirá el cambio en la torta al instante.', required: true },
+    { key: 'numbers', source: 'numbers', summaryLabel: 'Número', eyebrow: 'DETALLE ESPECIAL', title: '¿Qué número querés?', description: 'Elegí uno o dos números. Si no lleva edad, podés seguir sin seleccionar ninguno.', multiple: true, max: 2, required: false },
+    { key: 'decorations', source: 'decorations', summaryLabel: 'Decoración', eyebrow: 'TOQUE FINAL', title: 'Elegí la decoración', description: 'Combiná hasta dos estilos que ya estaban disponibles en el pedido personalizado.', multiple: true, max: 2, required: false }
   ];
   window.DoreLabCakeConfig = CAKE_CONFIG;
 
@@ -87,7 +87,11 @@
   const optionFor = (step, id) => stepOptions(step).find(option => option.id === id);
   const selectedOptions = step => selectedIds(step).map(id => optionFor(step, id)).filter(Boolean);
   const isStepReady = step => !step.required || selectedIds(step).length > 0;
-  const selectionLabel = step => selectedOptions(step).map(option => option.name).join(' + ') || 'Sin elegir';
+  const selectionLabel = step => {
+    const selected = selectedOptions(step);
+    if (!selected.length) return 'Sin elegir';
+    return step.key === 'numbers' ? selected.map(option => option.name).join('') : selected.map(option => option.name).join(' + ');
+  };
   const allSelected = () => STEPS.flatMap(step => selectedOptions(step).map(option => ({ step, option })));
 
   function quote() {
@@ -120,7 +124,14 @@
     const total = estimate.total === null ? 'A cotizar' : money(estimate.total);
     $('[data-builder-total]').textContent = total;
     $('[data-builder-complete-total]').textContent = total;
-    const lines = estimate.choices.slice(-4).map(({ step, option }) => `<span><b>${step.title.replace('Elegí ', '')}</b><em>${Number.isFinite(option.price) ? money(option.price) : 'A cotizar'}</em></span>`).join('');
+    const lines = STEPS.map(step => {
+      const selected = selectedOptions(step);
+      if (!selected.length) return '';
+      const price = selected.every(option => Number.isFinite(option.price))
+        ? selected.reduce((sum, option) => sum + option.price, 0)
+        : null;
+      return `<span><b>${step.summaryLabel}</b><em>${price === null ? 'A cotizar' : money(price)}</em></span>`;
+    }).join('');
     $('[data-builder-price-lines]').innerHTML = lines || '<span><b>Tu fórmula</b><em>pendiente</em></span>';
   }
 
@@ -132,15 +143,17 @@
     const size = optionFor(STEPS[0], state.size);
     const shape = optionFor(STEPS[1], state.shape);
     const flavor = optionFor(STEPS[2], state.flavor);
-    const filling = optionFor(STEPS[3], state.fillings[0]);
+    const fillings = selectedOptions(STEPS[3]);
+    const filling = fillings[0];
     const coating = optionFor(STEPS[4], state.coating);
     const color = optionFor(STEPS[5], state.color);
     const decorations = selectedOptions(STEPS[7]);
-    previewCake.className = `cake-preview-body shape-${shape?.visual || 'round'}${flavor?.visual === 'marble' ? ' is-marble' : ''}`;
+    previewCake.className = `cake-preview-body shape-${shape?.visual || 'round'}${flavor?.visual === 'marble' ? ' is-marble' : ''}${fillings.length > 1 ? ' has-double-filling' : ''}`;
     previewCake.style.setProperty('--cake-scale', size?.scale || '.84');
     previewCake.style.setProperty('--cake-icing', color?.color || coating?.color || '#f7e9cf');
     previewCake.style.setProperty('--cake-crumb', flavor?.crumb || '#e7bd79');
     previewCake.style.setProperty('--cake-fill', filling?.color || '#c78341');
+    previewCake.style.setProperty('--cake-fill-secondary', fillings[1]?.color || filling?.color || '#c78341');
     previewNumber.textContent = state.numbers.join('');
     previewNumber.classList.toggle('has-number', state.numbers.length > 0);
     previewDecorations.innerHTML = decorations.map(decorationMarkup).join('');
@@ -159,7 +172,7 @@
   }
 
   function renderSummary() {
-    const rows = STEPS.map(step => `<p><b>${step.title.replace('Elegí ', '').replace('¿Qué ', '')}</b><span>${selectionLabel(step)}</span></p>`).join('');
+    const rows = STEPS.map(step => `<p><b>${step.summaryLabel}</b><span>${selectionLabel(step)}</span></p>`).join('');
     $('[data-builder-summary]').innerHTML = rows;
   }
 
@@ -213,7 +226,7 @@
 
   function cartPayload() {
     const estimate = quote();
-    const details = STEPS.map(step => `${step.title.replace('Elegí ', '').replace('¿Qué ', '')}: ${selectionLabel(step)}`);
+    const details = STEPS.map(step => `${step.summaryLabel}: ${selectionLabel(step)}`);
     return { title: 'Torta Doré Lab personalizada', details, total: estimate.total, priceStatus: estimate.total === null ? 'A cotizar' : null, image: 'assets/cake-passion.png' };
   }
 
@@ -227,7 +240,7 @@
   }
 
   async function shareCreation() {
-    const details = STEPS.map(step => `${step.title.replace('Elegí ', '').replace('¿Qué ', '')}: ${selectionLabel(step)}`).join('\n');
+    const details = STEPS.map(step => `${step.summaryLabel}: ${selectionLabel(step)}`).join('\n');
     const text = `MI CREACIÓN DORÉ LAB 🧪\nDiseñé mi torta en el laboratorio.\n\n${details}\n\nTotal estimado: ${quote().total === null ? 'A cotizar' : money(quote().total)}`;
     try {
       if (navigator.share) await navigator.share({ title: 'Mi creación Doré Lab', text, url: window.location.href });
