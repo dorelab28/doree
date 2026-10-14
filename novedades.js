@@ -120,10 +120,10 @@ function sortNews(items) {
 
 function createNewsCard(item) {
   const article = document.createElement('article');
-  article.className = 'news-card';
+  article.className = 'dore-news-card';
 
   const media = document.createElement('div');
-  media.className = 'news-card-media';
+  media.className = 'dore-news-card-media';
   const image = document.createElement('img');
   image.src = item.image;
   image.alt = item.alt;
@@ -132,9 +132,9 @@ function createNewsCard(item) {
   media.append(image);
 
   const body = document.createElement('div');
-  body.className = 'news-card-body';
+  body.className = 'dore-news-card-body';
   const category = document.createElement('span');
-  category.className = 'news-card-category';
+  category.className = 'dore-news-card-category';
   category.textContent = item.category;
   const title = document.createElement('h3');
   title.textContent = item.title;
@@ -143,7 +143,7 @@ function createNewsCard(item) {
   body.append(category, title, description);
 
   const footer = document.createElement('div');
-  footer.className = 'news-card-footer';
+  footer.className = 'dore-news-card-footer';
   if (item.date) {
     const date = document.createElement('time');
     date.dateTime = item.date;
@@ -172,9 +172,9 @@ function createNewsCard(item) {
 
 function createTestimonial(item) {
   const article = document.createElement('article');
-  article.className = 'testimonial-card';
+  article.className = 'dore-testimonial-card';
   const mark = document.createElement('span');
-  mark.className = 'testimonial-mark';
+  mark.className = 'dore-testimonial-mark';
   mark.setAttribute('aria-hidden', 'true');
   mark.textContent = '“';
   const quote = document.createElement('blockquote');
