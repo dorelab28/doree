@@ -192,11 +192,30 @@ function createTestimonial(item) {
   return article;
 }
 
+function applyNewsGridLayout() {
+  const newsGrid = document.querySelector('[data-news-grid]');
+  if (!newsGrid) return;
+
+  // Use the viewport width here as a safeguard for embedded or high-density
+  // desktop browsers, where stylesheet breakpoints can report a narrow width.
+  const columns = window.innerWidth >= 1200 ? 4 : window.innerWidth >= 700 ? 3 : window.innerWidth >= 540 ? 2 : 1;
+  newsGrid.style.setProperty('display', 'grid', 'important');
+  newsGrid.style.setProperty('grid-template-columns', `repeat(${columns}, minmax(0, 1fr))`, 'important');
+
+  const cards = newsGrid.querySelectorAll('.dore-news-card');
+  cards.forEach((card, index) => {
+    card.style.removeProperty('grid-column');
+    if (index === 0 && columns > 1) card.style.setProperty('grid-column', 'span 2', 'important');
+  });
+}
+
 function renderNews() {
   const newsGrid = document.querySelector('[data-news-grid]');
   const testimonialGrid = document.querySelector('[data-testimonial-grid]');
   if (newsGrid) sortNews(NEWS_ITEMS).forEach(item => newsGrid.append(createNewsCard(item)));
   if (testimonialGrid) TESTIMONIALS.filter(item => item.status === 'published').forEach(item => testimonialGrid.append(createTestimonial(item)));
+  applyNewsGridLayout();
 }
 
 renderNews();
+window.addEventListener('resize', applyNewsGridLayout);
