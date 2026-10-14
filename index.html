@@ -12,6 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="supabase-client.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="novedades.js" defer></script>
   <script src="club.js" defer></script>
 </head>
 <body class="page-home">
@@ -28,6 +29,7 @@
       <a href="index.html#ruleta">Ruleta</a>
       <a href="index.html#club">Club</a>
       <a href="tortas.html">Tortas</a>
+      <a href="index.html#novedades">Novedades</a>
       <a href="index.html#nosotros">El laboratorio</a>
       <a href="entregas.html">Entregas</a>
     </nav>
@@ -230,6 +232,32 @@
           <button class="button primary manual-cta" type="button" data-open-cake-summary disabled>Completar detalles finales</button>
           <small>Al final podés sumar colores, temática, frase, referencias o cualquier idea extra.</small>
         </article>
+      </div>
+    </section>
+
+    <section class="section news-section" id="novedades" aria-labelledby="novedades-title">
+      <div class="news-heading">
+        <div>
+          <p class="eyebrow">NOVEDADES DEL LABORATORIO</p>
+          <h2 id="novedades-title">Novedades de<br><em>Doré Lab.</em></h2>
+        </div>
+        <div class="news-heading-copy">
+          <p>Últimas creaciones, nuevas fórmulas y momentos dulces que salieron de nuestro laboratorio.</p>
+          <span class="news-stamp">EXPEDIENTE<br>ACTUALIZADO</span>
+        </div>
+      </div>
+      <div class="news-grid" data-news-grid aria-live="polite"></div>
+      <a class="news-instagram-link" href="https://instagram.com/dore_lab" target="_blank" rel="noreferrer">Ver más experimentos en @dore_lab <span aria-hidden="true">→</span></a>
+    </section>
+
+    <section class="news-testimonials" aria-labelledby="opiniones-title">
+      <div class="news-testimonials-inner">
+        <div class="news-testimonials-heading">
+          <p class="eyebrow">VALIDACIÓN DEL EXPERIMENTO</p>
+          <h2 id="opiniones-title">Lo que dicen quienes<br><em>probaron Doré Lab.</em></h2>
+          <p>Comentarios reales compartidos en Instagram. Conservamos sus palabras tal como fueron publicadas.</p>
+        </div>
+        <div class="testimonial-grid" data-testimonial-grid aria-live="polite"></div>
       </div>
     </section>
 
