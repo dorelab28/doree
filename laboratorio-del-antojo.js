@@ -23,6 +23,10 @@ const PRODUCT_CATALOG = [
   {id:'torta-personalizada', code:'A MEDIDA', name:'Torta personalizada', category:'Tortas', categoryId:'cakes', image:'assets/cake-argentina.png', link:'tortas.html#tortas', description:'Una torta a medida: elegí tamaño, sabor, relleno y decoración con el laboratorio.', texture:'La textura y el sabor se terminan de definir según la fórmula que armes.', tastes:['chocolate','creamy','fruit','toasted','classic'], textures:['creamy','crunch','soft','mixed'], cravings:['low','moderate','high'], priority:17}
 ];
 
+// Main catalog imagery is kept in sync with the cleaned product photos.
+const ANTOJO_IMAGE_OVERRIDES={'cadbury-frutilla':'assets/catalog-cadbury-clean.png','pistacho-cookie':'assets/catalog-pistacho-clean.png'};
+PRODUCT_CATALOG.forEach(product=>{if(ANTOJO_IMAGE_OVERRIDES[product.id])product.image=ANTOJO_IMAGE_OVERRIDES[product.id]});
+
 const QUESTIONS = [
   {id:'taste', kicker:'PASO 01 · PERFIL', title:'¿Qué perfil de sabor te tienta más?', intro:'Elegí la señal que mejor describe tu antojo de hoy.', options:[
     {id:'chocolate', label:'Chocolate intenso', detail:'Cacao, chips y centros', art:'●'},

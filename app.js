@@ -12,6 +12,11 @@
   {id:'coco',code:'CO-01',name:'Coco',price:4500,tier:'normal',tierLabel:'FÓRMULA NORMAL',image:'assets/cream-updated-coco.webp',gallery:['assets/cream-updated-coco.webp','assets/updated-coco.jpeg','assets/poster-coco.jpeg'],desc:'Centro de dulce de leche, masa de coco y vainilla, y cubierta de dulce de leche con coco.',bio:'La fórmula CO-01 es una reacción bien argentina: una masa suave de coco y vainilla que protege un centro cremoso de dulce de leche. La cubierta final suma más dulce de leche y coco rallado, dejando una muestra cálida, casera y aromática.',formula:'Masa de coco y vainilla · centro de dulce de leche · cubierta de dulce de leche · coco rallado.',texture:'Masa suave, centro denso y terminación granulada de coco.'},
   {id:'limon',code:'L-01',name:'Limón',price:5000,tier:'premium',tierLabel:'FÓRMULA PREMIUM',image:'assets/cream-updated-limon.webp',gallery:['assets/cream-updated-limon.webp','assets/updated-limon.jpeg','assets/poster-limon.jpeg'],desc:'Centro de ganache de chocolate blanco con limón.',bio:'La fórmula L-01 baja la intensidad del chocolate y sube la frescura. Su centro de ganache de chocolate blanco con limón corta la dulzura con precisión, dejando una sensación suave, brillante y equilibrada.',formula:'Masa XL · ganache de chocolate blanco con limón · chocolate blanco · nota cítrica.',texture:'Centro fresco y cremoso, cobertura sedosa y final cítrico.'}
 ];
+
+// Product shots supplied in October 2026, cleaned onto the catalog's beige
+// backdrop. Keep the original assets in the gallery as secondary views.
+const CATALOG_IMAGE_OVERRIDES={cadbury:'assets/catalog-cadbury-clean.png',pistacho:'assets/catalog-pistacho-clean.png'};
+PRODUCTS.forEach(product=>{const image=CATALOG_IMAGE_OVERRIDES[product.id];if(!image)return;const previous=product.image;product.image=image;product.gallery=[image,...(product.gallery||[]).filter(asset=>asset!==previous)]});
 const BARS = [
   {id:'frutilla',code:'F-01',name:'Doré Bar — Frutilla Doré',image:'assets/dore-bar-frutilla.jpeg',desc:'Chocolate negro, cookie de vainilla y jalea de frutilla.'},
   {id:'nutella',code:'N-01',name:'Doré Bar — Nutella',image:'assets/dore-bar-nutella.jpeg',desc:'Chocolate, cookie de chocolate y un centro de Nutella.'},
