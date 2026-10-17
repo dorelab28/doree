@@ -54,7 +54,7 @@ const NEWS_ITEMS = [
     category: 'Cookies',
     description: 'Galletita de vainilla, centro cremoso de pistacho, chips blancos y pistachos.',
     date: null,
-    image: 'assets/updated-pistacho.jpeg',
+    image: 'assets/catalog-pistacho-clean.png',
     alt: 'Cookie XL de pistacho Doré Lab',
     link: 'cookies.html',
     linkLabel: 'Ver cookies',
