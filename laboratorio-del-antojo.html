@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073b78">
+  <meta name="description" content="Descubrí tu próxima fórmula Doré Lab con El Laboratorio del Antojo.">
+  <title>El Laboratorio del Antojo | Doré Lab</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="v2.css">
+  <link rel="stylesheet" href="laboratorio-del-antojo.css">
+  <script src="laboratorio-del-antojo.js" defer></script>
+</head>
+<body class="page-antojo">
+  <div class="announcement">🧪 Tu próxima obsesión está a cuatro preguntas de distancia</div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Doré Lab, inicio">
+      <img src="assets/logo.png" alt="Doré Lab, cocinero y pastelera">
+      <span><b>doré lab</b><small>dulces experimentos</small></span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="cookies.html">Cookies XL</a>
+      <a href="bars.html">Doré Bars</a>
+      <a href="boxes.html">Boxes</a>
+      <a href="tortas.html">Tortas</a>
+      <a class="is-current" href="laboratorio-del-antojo.html" aria-current="page">El Antojo</a>
+    </nav>
+    <a class="antojo-catalog-link" href="cookies.html">Ver catálogo <span aria-hidden="true">→</span></a>
+  </header>
+
+  <main class="antojo-main">
+    <section class="antojo-shell" aria-labelledby="antojo-title">
+      <div class="antojo-dossier-line" aria-hidden="true"><span>ARCHIVO DORÉ LAB</span><i></i><span>ENSAYO 004</span></div>
+
+      <div class="antojo-screen antojo-welcome" data-antojo-screen="welcome">
+        <div class="antojo-welcome-copy">
+          <p class="eyebrow">EXPEDIENTE PERSONALIZADO · 2 MINUTOS</p>
+          <h1 id="antojo-title">El Laboratorio<br><em>del Antojo.</em></h1>
+          <p>Cada antojo tiene su fórmula. Respondé unas preguntas y descubrí tu próxima obsesión de Doré Lab.</p>
+          <button class="button primary antojo-start" type="button" data-antojo-start>Comenzar experimento <span aria-hidden="true">→</span></button>
+          <a class="antojo-back-link" href="cookies.html">← Volver al catálogo</a>
+        </div>
+        <div class="antojo-welcome-visual" aria-label="Ilustración del laboratorio Doré Lab">
+          <span class="antojo-doodle star-one" aria-hidden="true">✦</span>
+          <span class="antojo-doodle star-two" aria-hidden="true">✧</span>
+          <span class="antojo-doodle formula-one" aria-hidden="true">H₂O?</span>
+          <span class="antojo-doodle arrow-one" aria-hidden="true">↗</span>
+          <div class="antojo-specimen-card">
+            <div class="antojo-specimen-top"><span>FÓRMULA DEL DÍA</span><b>APROBADA</b></div>
+            <div class="antojo-logo-orbit"><img src="assets/hero-avatar-lab.png" alt="Personajes del laboratorio Doré Lab"></div>
+            <div class="antojo-beaker" aria-hidden="true"><i></i><b></b><em></em></div>
+            <p><strong>Una dosis hecha para vos.</strong><span>Analizamos el antojo, no la ciencia.</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="antojo-screen antojo-question-screen" data-antojo-screen="questions" hidden>
+        <div class="antojo-question-head">
+          <div>
+            <p class="eyebrow" data-question-kicker>PASO 01 · PERFIL</p>
+            <h1 data-question-title tabindex="-1">¿Qué perfil de sabor te tienta más?</h1>
+          </div>
+          <div class="antojo-progress-wrap">
+            <span data-progress-copy>1 de 4</span>
+            <div class="antojo-progress" role="progressbar" aria-label="Progreso del experimento" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1"><i data-progress-bar></i></div>
+          </div>
+        </div>
+        <p class="antojo-question-intro" data-question-intro>Elegí la señal que mejor describe tu antojo de hoy.</p>
+        <div class="antojo-options" data-question-options role="group" aria-label="Opciones de respuesta"></div>
+        <div class="antojo-question-nav">
+          <button class="button secondary" type="button" data-antojo-back>← Anterior</button>
+          <p class="antojo-selection-note" data-selection-note aria-live="polite">Elegí una opción para continuar.</p>
+          <button class="button primary" type="button" data-antojo-next disabled>Siguiente <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+
+      <div class="antojo-screen antojo-analyzing" data-antojo-screen="analyzing" hidden aria-live="polite">
+        <div class="antojo-analysis-mark" aria-hidden="true"><span>✦</span><i></i><b>⚗</b></div>
+        <p class="eyebrow">CRUZANDO SEÑALES DEL ANTOJO</p>
+        <h1>Preparando tu<br><em>fórmula.</em></h1>
+        <p>Buscamos la coincidencia más rica dentro del catálogo de Doré Lab.</p>
+      </div>
+
+      <div class="antojo-screen antojo-result-screen" data-antojo-screen="result" hidden aria-live="polite">
+        <div class="antojo-result-heading">
+          <div><p class="eyebrow">RESULTADO DEL ENSAYO · FÓRMULA PRINCIPAL</p><h1>Tu fórmula<br><em>está lista.</em></h1></div>
+          <button type="button" class="antojo-restart-top" data-antojo-restart>↻ Repetir experimento</button>
+        </div>
+        <div class="antojo-result-card" data-result-card>
+          <div class="antojo-result-image" data-result-image aria-busy="true">
+            <span class="antojo-image-loading" aria-hidden="true">⚗</span>
+            <img data-result-photo src="" alt="" hidden>
+            <div class="antojo-image-empty" data-result-image-empty hidden><b>Imagen no disponible</b><span>Podés conocer esta fórmula en el catálogo.</span></div>
+            <span class="antojo-product-code" data-result-code></span>
+          </div>
+          <div class="antojo-result-copy">
+            <p class="antojo-result-category" data-result-category></p>
+            <h2 data-result-name></h2>
+            <p class="antojo-result-why" data-result-why></p>
+            <div class="antojo-detail-list">
+              <div><span>SABOR</span><p data-result-description></p></div>
+              <div><span>TEXTURA</span><p data-result-texture></p></div>
+            </div>
+            <div class="antojo-craving-meter" data-craving-meter aria-label="Nivel de antojo seleccionado"><span>NIVEL DE ANTOJO</span><div aria-hidden="true"><i></i><i></i><i></i></div><b data-craving-label></b></div>
+            <div class="antojo-result-actions"><a class="button primary" data-result-link href="cookies.html">Ver producto <span aria-hidden="true">→</span></a><button class="button whatsapp" type="button" data-result-whatsapp>Consultar por WhatsApp</button></div>
+          </div>
+        </div>
+        <section class="antojo-alternatives" data-alternatives-section hidden aria-labelledby="alternatives-title">
+          <div><p class="eyebrow">OTRAS FÓRMULAS COMPATIBLES</p><h2 id="alternatives-title">También podrían<br><em>tentarte.</em></h2></div>
+          <div class="antojo-alternative-grid" data-alternatives></div>
+        </section>
+        <section class="antojo-answer-summary" aria-labelledby="answer-summary-title">
+          <div><p class="eyebrow">TU REGISTRO DE LABORATORIO</p><h2 id="answer-summary-title">Las señales que<br><em>elegiste.</em></h2></div>
+          <div class="antojo-answer-list" data-answer-list></div>
+        </section>
+        <div class="antojo-result-footer"><button class="button secondary" type="button" data-antojo-restart>↻ Repetir experimento</button><a class="antojo-back-link" href="cookies.html">Explorar todo el catálogo →</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand"><img src="assets/logo.png" alt=""><p>Dulces experimentos,<br>hechos con amor.</p></div>
+    <div><b>Explorá</b><a href="cookies.html">Cookies XL</a><a href="bars.html">Doré Bars</a><a href="tortas.html">Tortas personalizadas</a></div>
+    <div><b>Contacto</b><a href="https://wa.me/5491135231567" target="_blank" rel="noreferrer">WhatsApp</a><a href="https://instagram.com/dore_lab" target="_blank" rel="noreferrer">@dore_lab</a></div>
+    <small>© 2026 Doré Lab · Experimento aprobado</small>
+  </footer>
+</body>
+</html>
