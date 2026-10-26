@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b0a">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>Access Restricted | Doré Lab</title>
+  <link rel="stylesheet" href="blacklist.css">
+  <script src="blacklist-access.js" defer></script>
+</head>
+<body class="blacklist-page blacklist-access-page">
+  <div class="blacklist-noise" aria-hidden="true"></div>
+  <main class="blacklist-access-shell">
+    <a class="blacklist-back" href="index.html">← RETURN TO PUBLIC SITE</a>
+    <section class="access-terminal" aria-labelledby="blacklist-access-title">
+      <div class="access-terminal-bar"><span></span><span></span><span></span><b>SECURE://DORÉ-LAB/BLACKLIST</b></div>
+      <div class="access-terminal-body">
+        <p class="terminal-line">&gt; PRIVATE NODE DETECTED</p>
+        <p class="terminal-line terminal-muted">&gt; ENCRYPTION: ACTIVE / TRACE: DISABLED</p>
+        <p class="blacklist-kicker">DORÉ LAB // BLACKLIST</p>
+        <h1 id="blacklist-access-title">ACCESS<br><span>RESTRICTED</span></h1>
+        <p class="access-description">IDENTITY VERIFICATION REQUIRED</p>
+        <form class="access-form" data-blacklist-login novalidate>
+          <label for="blacklist-password">ACCESS KEY</label>
+          <div class="access-input-wrap">
+            <span aria-hidden="true">&gt;</span>
+            <input id="blacklist-password" name="password" type="password" autocomplete="current-password" autocapitalize="characters" spellcheck="false" required maxlength="128" aria-describedby="blacklist-status">
+          </div>
+          <button type="submit" class="access-submit" data-blacklist-submit>UNLOCK ACCESS <span aria-hidden="true">↗</span></button>
+          <p class="access-status" id="blacklist-status" data-blacklist-status role="status" aria-live="polite"></p>
+        </form>
+        <p class="access-footnote">UNAUTHORIZED ACCESS IS NOT RECORDED. SESSION ENDS AUTOMATICALLY.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

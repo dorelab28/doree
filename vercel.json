@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/blacklist", "destination": "/api/blacklist/page" }
+  ]
+}
