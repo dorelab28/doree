@@ -1,9 +1,6 @@
 const crypto = require('crypto');
 
 const SESSION_TTL_SECONDS = 60 * 60 * 6;
-const RATE_WINDOW_MS = 15 * 60 * 1000;
-const MAX_ATTEMPTS_PER_WINDOW = 8;
-const RATE_LIMIT_NAMESPACE = 'dore:blacklist:login:v1:';
 
 function isProduction() {
   return process.env.VERCEL === '1' || process.env.NODE_ENV === 'production';
@@ -67,7 +64,15 @@ function clearSession(response) {
 }
 
 function signingSecret() {
-  return process.env.BLACKLIST_SESSION_SECRET || '';
+  const configuredSecret = process.env.BLACKLIST_SESSION_SECRET || '';
+  if (Buffer.byteLength(configuredSecret, 'utf8') >= 32) return configuredSecret;
+
+  // The simple configuration needs only BLACKLIST_PASSWORD. Deriving the
+  // signing key keeps that password server-only while invalidating sessions
+  // whenever it changes.
+  const configuredPassword = process.env.BLACKLIST_PASSWORD || '';
+  if (!configuredPassword) return '';
+  return crypto.createHash('sha256').update(`dore:blacklist:session:v1:${configuredPassword}`).digest('base64url');
 }
 
 function hasValidSigningSecret() {
@@ -123,83 +128,6 @@ function requireSession(request, response) {
   return session;
 }
 
-function requesterKey(request) {
-  const forwarded = request.headers['x-forwarded-for'];
-  const ip = Array.isArray(forwarded) ? forwarded[0] : (forwarded || request.socket?.remoteAddress || 'unknown');
-  return crypto.createHmac('sha256', signingSecret()).update(String(ip).split(',')[0].trim()).digest('base64url');
-}
-
-function sharedRedisCredentials() {
-  const configuredPairs = [
-    ['BLACKLIST_RATE_LIMIT_REST_URL', 'BLACKLIST_RATE_LIMIT_REST_TOKEN'],
-    ['UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN'],
-    ['KV_REST_API_URL', 'KV_REST_API_TOKEN']
-  ];
-
-  // Some Vercel Marketplace integrations namespace their injected variables.
-  // Pair only matching Upstash URL/token names; never scan for arbitrary tokens.
-  const urlSuffix = '_KV_REST_API_URL';
-  const tokenSuffix = '_KV_REST_API_TOKEN';
-  for (const name of Object.keys(process.env)) {
-    if (!name.startsWith('UPSTASH_') || !name.endsWith(urlSuffix)) continue;
-    configuredPairs.push([name, `${name.slice(0, -urlSuffix.length)}${tokenSuffix}`]);
-  }
-
-  for (const [urlName, tokenName] of configuredPairs) {
-    const url = process.env[urlName];
-    const token = process.env[tokenName];
-    if (url && token) return { url, token };
-  }
-  return null;
-}
-
-function rateLimitConfiguration() {
-  const credentials = sharedRedisCredentials();
-  if (!credentials || !hasValidSigningSecret() || typeof globalThis.fetch !== 'function') return null;
-  try {
-    const parsed = new URL(credentials.url);
-    if (parsed.protocol !== 'https:') return null;
-    return { url: parsed.toString().replace(/\/+$/, ''), token: credentials.token };
-  } catch {
-    return null;
-  }
-}
-
-async function redisCommand(configuration, command) {
-  try {
-    const response = await globalThis.fetch(configuration.url, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${configuration.token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(command)
-    });
-    if (!response.ok) return null;
-    const payload = await response.json();
-    return payload && !payload.error ? payload.result : null;
-  } catch {
-    return null;
-  }
-}
-
-async function consumeLoginAttempt(request) {
-  const configuration = rateLimitConfiguration();
-  if (!configuration) return { available: false, limited: true };
-
-  // The script makes increment-and-expiry atomic in the shared Redis store.
-  const result = await redisCommand(configuration, [
-    'EVAL',
-    "local count = redis.call('INCR', KEYS[1]); if count == 1 then redis.call('PEXPIRE', KEYS[1], ARGV[1]); end; return count",
-    1,
-    `${RATE_LIMIT_NAMESPACE}${requesterKey(request)}`,
-    RATE_WINDOW_MS
-  ]);
-  const attempts = Number(result);
-  if (!Number.isSafeInteger(attempts) || attempts < 1) return { available: false, limited: true };
-  return { available: true, limited: attempts > MAX_ATTEMPTS_PER_WINDOW };
-}
-
 function secureEqualText(left, right) {
   const leftBuffer = Buffer.from(String(left));
   const rightBuffer = Buffer.from(String(right));
@@ -227,12 +155,12 @@ function verifyScryptHash(candidate, storedValue) {
 }
 
 function verifyPassword(candidate) {
+  const configuredPassword = process.env.BLACKLIST_PASSWORD;
+  if (configuredPassword) return secureEqualText(candidate, configuredPassword);
+
   const storedHash = process.env.BLACKLIST_PASSWORD_HASH;
   if (storedHash) return verifyScryptHash(candidate, storedHash);
-
-  // This migration path remains server-only. It is intentionally disabled when no private variable is configured.
-  const configuredPassword = process.env.BLACKLIST_PASSWORD;
-  return Boolean(configuredPassword) && secureEqualText(candidate, configuredPassword);
+  return false;
 }
 
 function authIsConfigured() {
@@ -248,7 +176,6 @@ module.exports = Object.assign(hiddenHelperEndpoint, {
   SESSION_TTL_SECONDS,
   authIsConfigured,
   clearSession,
-  consumeLoginAttempt,
   createSession,
   isSameOriginRequest,
   makeCookie,
