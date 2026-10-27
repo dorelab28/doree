@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <defs>
+    <radialGradient id="cookie" cx="0" cy="0" r="1" gradientTransform="translate(103 95) rotate(58) scale(154)">
+      <stop stop-color="#FFD987"/>
+      <stop offset=".58" stop-color="#EAA34E"/>
+      <stop offset="1" stop-color="#C97932"/>
+    </radialGradient>
+    <linearGradient id="hat" x1="113" y1="27" x2="151" y2="95" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1788ED"/>
+      <stop offset="1" stop-color="#073B78"/>
+    </linearGradient>
+    <filter id="shadow" x="22" y="15" width="209" height="221" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="7" stdDeviation="4" flood-color="#4B281D" flood-opacity=".2"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)" stroke="#073B78" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M87 82c7-25 26-42 51-48 16 14 27 34 28 58l-79-10Z" fill="url(#hat)"/>
+    <path d="M71 83c30-11 74-8 113 7 5 2 4 9-2 10-40 9-84 4-115-7-6-2-3-8 4-10Z" fill="#1788ED"/>
+    <circle cx="128" cy="145" r="86" fill="url(#cookie)"/>
+  </g>
+  <g fill="#4B281D" stroke="#073B78" stroke-width="4" stroke-linejoin="round">
+    <path d="m82 105 12-7 9 10-6 13-14-2-5-14 4 0Z"/>
+    <path d="m151 88 14 5 2 14-13 7-12-10 3-13 6-3Z"/>
+    <path d="m177 136 15-4 8 12-8 12-15-4-4-14 4-2Z"/>
+    <path d="m70 152 14-8 13 10-5 15-15 2-10-10 3-9Z"/>
+    <path d="m108 190 14-7 12 11-4 15-15 1-10-11 3-9Z"/>
+    <path d="m152 193 13-7 12 10-3 15-14 2-11-11 3-9Z"/>
+  </g>
+  <g stroke="#073B78" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M92 133c8-8 19-9 28-3"/>
+    <path d="M146 127c9-7 20-5 27 3"/>
+    <ellipse cx="108" cy="146" rx="12" ry="15" fill="#FFFDF9"/>
+    <ellipse cx="159" cy="145" rx="12" ry="15" fill="#FFFDF9"/>
+    <circle cx="111" cy="149" r="5" fill="#073B78" stroke="none"/>
+    <circle cx="156" cy="148" r="5" fill="#073B78" stroke="none"/>
+    <path d="M104 172c13 13 34 16 51 1"/>
+    <path d="M123 187c8 4 16 4 23 0" stroke-width="5"/>
+  </g>
+  <path d="m189 70 3 8 8 3-8 3-3 8-3-8-8-3 8-3 3-8Z" fill="#1788ED" stroke="#073B78" stroke-width="4" stroke-linejoin="round"/>
+  <path d="m61 130 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z" fill="#FFF7ED" stroke="#073B78" stroke-width="3" stroke-linejoin="round"/>
+</svg>
