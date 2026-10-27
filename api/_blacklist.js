@@ -129,14 +129,37 @@ function requesterKey(request) {
   return crypto.createHmac('sha256', signingSecret()).update(String(ip).split(',')[0].trim()).digest('base64url');
 }
 
+function sharedRedisCredentials() {
+  const configuredPairs = [
+    ['BLACKLIST_RATE_LIMIT_REST_URL', 'BLACKLIST_RATE_LIMIT_REST_TOKEN'],
+    ['UPSTASH_REDIS_REST_URL', 'UPSTASH_REDIS_REST_TOKEN'],
+    ['KV_REST_API_URL', 'KV_REST_API_TOKEN']
+  ];
+
+  // Some Vercel Marketplace integrations namespace their injected variables.
+  // Pair only matching Upstash URL/token names; never scan for arbitrary tokens.
+  const urlSuffix = '_KV_REST_API_URL';
+  const tokenSuffix = '_KV_REST_API_TOKEN';
+  for (const name of Object.keys(process.env)) {
+    if (!name.startsWith('UPSTASH_') || !name.endsWith(urlSuffix)) continue;
+    configuredPairs.push([name, `${name.slice(0, -urlSuffix.length)}${tokenSuffix}`]);
+  }
+
+  for (const [urlName, tokenName] of configuredPairs) {
+    const url = process.env[urlName];
+    const token = process.env[tokenName];
+    if (url && token) return { url, token };
+  }
+  return null;
+}
+
 function rateLimitConfiguration() {
-  const url = process.env.BLACKLIST_RATE_LIMIT_REST_URL || process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || '';
-  const token = process.env.BLACKLIST_RATE_LIMIT_REST_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN || '';
-  if (!url || !token || !hasValidSigningSecret() || typeof globalThis.fetch !== 'function') return null;
+  const credentials = sharedRedisCredentials();
+  if (!credentials || !hasValidSigningSecret() || typeof globalThis.fetch !== 'function') return null;
   try {
-    const parsed = new URL(url);
+    const parsed = new URL(credentials.url);
     if (parsed.protocol !== 'https:') return null;
-    return { url: parsed.toString().replace(/\/+$/, ''), token };
+    return { url: parsed.toString().replace(/\/+$/, ''), token: credentials.token };
   } catch {
     return null;
   }
