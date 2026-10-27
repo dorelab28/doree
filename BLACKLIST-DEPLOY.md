@@ -4,7 +4,7 @@
 
 BLACKLIST no es una página pública escondida. La pantalla de entrada es estática, pero la validación ocurre en `/api/blacklist/login`, el catálogo se entrega únicamente desde `/api/blacklist/catalog` y `/blacklist` es una ruta servida por el backend después de comprobar la cookie de sesión.
 
-La tienda pública no cambia: sigue siendo HTML/CSS/JS estático; su catálogo, carrito local y checkout por WhatsApp continúan en `app.js`. Las fotografías del menú BLACKLIST son referencias a las fotos originales existentes en `assets/`; no se añadieron imágenes generadas.
+La tienda pública no cambia: sigue siendo HTML/CSS/JS estático; su catálogo, carrito local y checkout por WhatsApp continúan en `app.js`. BLACKLIST mantiene un buffer de pedido local separado, únicamente para demostración: sus precios de referencia se calculan en el servidor como dos veces los precios centralizados en `public-prices.js`, y no existe una ruta de checkout, pago ni WhatsApp para esa línea. Las fotografías del menú BLACKLIST son referencias a las fotos originales existentes en `assets/`; no se añadieron imágenes generadas.
 
 ## Requisito de hosting
 
@@ -48,4 +48,4 @@ La limitación de intentos incluida en la función limita ocho fallos por IP dur
 
 ## Límites deliberados
 
-Las fotos de productos ya existen en la tienda pública; no es posible volverlas privadas sin reorganizar también el catálogo público. Lo que esta capa protege son la ruta BLACKLIST y la respuesta que revela identidades, precios y descripciones clandestinas. Las operaciones comerciales públicas actuales siguen siendo locales/WhatsApp y no existe un backend de pagos en este proyecto.
+Las fotos de productos ya existen en la tienda pública; no es posible volverlas privadas sin reorganizar también el catálogo público. Lo que esta capa protege son la ruta BLACKLIST y la respuesta que revela identidades, precios y descripciones clandestinas. Las operaciones comerciales públicas actuales siguen siendo locales/WhatsApp y no existe un backend de pagos en este proyecto. BLACKLIST deja explícitamente deshabilitados los pedidos reales hasta que se verifiquen las autorizaciones legales, la composición y los alérgenos de cada producto.
