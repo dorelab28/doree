@@ -1,4 +1,4 @@
-const { setNoStore } = require('../_blacklist');
+const { setNoStore, sessionFromRequest } = require('../_blacklist');
 
 const document = `<!doctype html>
 <html lang="es">
@@ -17,14 +17,15 @@ const document = `<!doctype html>
   <main class="blacklist-shell">
     <header class="blacklist-header">
       <a class="blacklist-mark" href="/" aria-label="Volver a Doré Lab">DORÉ LAB<span>//</span> BLACKLIST</a>
-      <div class="blacklist-status" aria-label="Estado del sistema"><i></i> PUBLIC ARCHIVE / OPEN</div>
+      <div class="blacklist-status" aria-label="Estado del sistema"><i></i> SECURE CHANNEL / ESTABLISHED</div>
       <div class="blacklist-header-actions">
         <button class="blacklist-order-trigger" type="button" data-blacklist-open-cart aria-label="Abrir buffer demostrativo">DEMO BUFFER <b data-blacklist-cart-count>00</b></button>
+        <button class="blacklist-logout" type="button" data-blacklist-logout>CLOSE SESSION</button>
       </div>
     </header>
     <section class="blacklist-intro" data-blacklist-intro aria-live="polite">
-      <p class="terminal-line">&gt; PUBLIC ARCHIVE OPEN</p>
-      <p class="terminal-line">&gt; RECORDS AVAILABLE</p>
+      <p class="terminal-line">&gt; ACCESS GRANTED</p>
+      <p class="terminal-line">&gt; IDENTITY OVERRIDDEN</p>
       <p class="terminal-line">&gt; DECRYPTING UNDERGROUND MENU<span class="terminal-cursor">_</span></p>
     </section>
     <section class="blacklist-notice" aria-labelledby="blacklist-notice-title">
@@ -52,7 +53,7 @@ const document = `<!doctype html>
         <p class="blacklist-loading">LOADING ENCRYPTED RECORDS<span class="terminal-cursor">_</span></p>
       </div>
     </section>
-    <footer class="blacklist-footer"><span>© DORÉ LAB / PUBLIC ARCHIVE</span><span>DEMO MODE / ORDERS DISABLED</span></footer>
+    <footer class="blacklist-footer"><span>© DORÉ LAB / INTERNAL ACCESS ONLY</span><span>SESSION EXPIRES AUTOMATICALLY</span></footer>
   </main>
   <aside class="blacklist-cart" data-blacklist-cart aria-hidden="true" aria-label="Mi pedido BLACKLIST">
     <header class="blacklist-panel-header"><div><p>REFERENCE BUFFER / DEMO</p><h2>MY DEMO</h2></div><button type="button" data-blacklist-close-cart aria-label="Cerrar buffer demostrativo">×</button></header>
@@ -80,6 +81,11 @@ module.exports = function handler(request, response) {
   if (request.method !== 'GET') {
     response.setHeader('Allow', 'GET');
     response.status(405).end();
+    return;
+  }
+  if (!sessionFromRequest(request)) {
+    response.setHeader('Location', '/blacklist-access.html');
+    response.status(302).end();
     return;
   }
   response.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'");
