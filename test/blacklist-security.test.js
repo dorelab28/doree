@@ -228,6 +228,19 @@ test('login fails closed when no shared rate-limit service is configured', { con
   assert.deepEqual(loginResponse.body, { error: 'RATE_LIMIT_UNAVAILABLE' });
 });
 
+test('Vercel namespaced Upstash variables are accepted as a matched URL/token pair', { concurrency: false }, async () => {
+  configureSecurityEnvironment();
+  delete process.env.BLACKLIST_RATE_LIMIT_REST_URL;
+  delete process.env.BLACKLIST_RATE_LIMIT_REST_TOKEN;
+  process.env.UPSTASH_REDIS_REST_URL_KV_REST_API_URL = 'https://rate-limit.example.test';
+  process.env.UPSTASH_REDIS_REST_URL_KV_REST_API_TOKEN = 'test-token';
+  installSharedRedis();
+  const handlers = loadHandlers();
+  const loginResponse = response();
+  await handlers.login(loginRequest('correct horse battery staple'), loginResponse);
+  assert.equal(loginResponse.statusCode, 200);
+});
+
 test('the deployment Markdown is outside the deployment root and has a 404 route', { concurrency: false }, () => {
   assert.equal(fs.existsSync(path.join(root, 'BLACKLIST-DEPLOY.md')), false);
   assert.equal(fs.existsSync(path.join(root, '..', 'BLACKLIST-DEPLOY.md')), true);
