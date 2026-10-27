@@ -5,7 +5,6 @@ const path = require('node:path');
 const test = require('node:test');
 
 const root = path.resolve(__dirname, '..');
-const originalFetch = globalThis.fetch;
 const originalEnvironment = { ...process.env };
 
 function restoreEnvironment() {
@@ -23,12 +22,6 @@ function configureSecurityEnvironment() {
   const digest = crypto.scryptSync('correct horse battery staple', salt, 64, { N: 16384, r: 8, p: 1 });
   process.env.BLACKLIST_PASSWORD_HASH = ['scrypt', 16384, 8, 1, salt.toString('base64url'), digest.toString('base64url')].join('$');
   delete process.env.BLACKLIST_PASSWORD;
-  process.env.BLACKLIST_RATE_LIMIT_REST_URL = 'https://rate-limit.example.test';
-  process.env.BLACKLIST_RATE_LIMIT_REST_TOKEN = 'test-token';
-  delete process.env.UPSTASH_REDIS_REST_URL;
-  delete process.env.UPSTASH_REDIS_REST_TOKEN;
-  delete process.env.KV_REST_API_URL;
-  delete process.env.KV_REST_API_TOKEN;
 }
 
 function clearBlacklistModules() {
@@ -90,25 +83,8 @@ function loginRequest(password, ip = '203.0.113.9') {
   });
 }
 
-function installSharedRedis() {
-  const counts = new Map();
-  globalThis.fetch = async (url, options) => {
-    assert.equal(url, 'https://rate-limit.example.test');
-    assert.equal(options.headers.Authorization, 'Bearer test-token');
-    const command = JSON.parse(options.body);
-    assert.equal(command[0], 'EVAL');
-    assert.equal(command[2], 1);
-    const key = command[3];
-    const count = (counts.get(key) || 0) + 1;
-    counts.set(key, count);
-    return { ok: true, json: async () => ({ result: count }) };
-  };
-  return counts;
-}
-
 test('protected endpoints reject anonymous and tampered sessions', { concurrency: false }, async () => {
   configureSecurityEnvironment();
-  installSharedRedis();
   const handlers = loadHandlers();
 
   const catalogResponse = response();
@@ -154,7 +130,6 @@ test('protected endpoints reject anonymous and tampered sessions', { concurrency
 
 test('a signed session authorizes the protected route and has secure expiry attributes', { concurrency: false }, async () => {
   configureSecurityEnvironment();
-  installSharedRedis();
   const handlers = loadHandlers();
   const loginResponse = response();
   await handlers.login(loginRequest('correct horse battery staple'), loginResponse);
@@ -197,47 +172,48 @@ test('a signed session authorizes the protected route and has secure expiry attr
   assert.match(logoutResponse.headers['Set-Cookie'], /Max-Age=0/);
 });
 
-test('the shared Redis limiter applies across independently loaded serverless instances', { concurrency: false }, async () => {
+test('BLACKLIST_PASSWORD enables the simple configuration without Redis or a session secret', { concurrency: false }, async () => {
   configureSecurityEnvironment();
-  const counts = installSharedRedis();
+  delete process.env.BLACKLIST_SESSION_SECRET;
+  delete process.env.BLACKLIST_PASSWORD_HASH;
+  process.env.BLACKLIST_PASSWORD = 'dore2026';
 
-  for (let attempt = 0; attempt < 8; attempt += 1) {
-    const handlers = loadHandlers();
-    const failedLogin = response();
-    await handlers.login(loginRequest('wrong password'), failedLogin);
-    assert.equal(failedLogin.statusCode, 401);
-  }
+  const handlers = loadHandlers();
+  const rejectedLogin = response();
+  await handlers.login(loginRequest('incorrecta'), rejectedLogin);
+  assert.equal(rejectedLogin.statusCode, 401);
 
-  const otherInstance = loadHandlers();
-  const blockedLogin = response();
-  await otherInstance.login(loginRequest('correct horse battery staple'), blockedLogin);
-  assert.equal(blockedLogin.statusCode, 429);
-  assert.equal(counts.size, 1);
-  assert.equal([...counts.values()][0], 9);
+  const acceptedLogin = response();
+  await handlers.login(loginRequest('dore2026'), acceptedLogin);
+  assert.equal(acceptedLogin.statusCode, 200);
+
+  const pageResponse = response();
+  handlers.page(request({ headers: { host: 'store.example.test', cookie: acceptedLogin.headers['Set-Cookie'].split(';')[0] } }), pageResponse);
+  assert.equal(pageResponse.statusCode, 200);
 });
 
-test('login fails closed when no shared rate-limit service is configured', { concurrency: false }, async () => {
+test('login is unavailable when no password is configured', { concurrency: false }, async () => {
   configureSecurityEnvironment();
-  delete process.env.BLACKLIST_RATE_LIMIT_REST_URL;
-  delete process.env.BLACKLIST_RATE_LIMIT_REST_TOKEN;
-  globalThis.fetch = originalFetch;
+  delete process.env.BLACKLIST_SESSION_SECRET;
+  delete process.env.BLACKLIST_PASSWORD_HASH;
+  delete process.env.BLACKLIST_PASSWORD;
   const handlers = loadHandlers();
   const loginResponse = response();
   await handlers.login(loginRequest('correct horse battery staple'), loginResponse);
   assert.equal(loginResponse.statusCode, 503);
-  assert.deepEqual(loginResponse.body, { error: 'RATE_LIMIT_UNAVAILABLE' });
+  assert.deepEqual(loginResponse.body, { error: 'AUTH_UNAVAILABLE' });
 });
 
-test('Vercel namespaced Upstash variables are accepted as a matched URL/token pair', { concurrency: false }, async () => {
+test('BLACKLIST_PASSWORD takes precedence over a legacy password hash', { concurrency: false }, async () => {
   configureSecurityEnvironment();
-  delete process.env.BLACKLIST_RATE_LIMIT_REST_URL;
-  delete process.env.BLACKLIST_RATE_LIMIT_REST_TOKEN;
-  process.env.UPSTASH_REDIS_REST_URL_KV_REST_API_URL = 'https://rate-limit.example.test';
-  process.env.UPSTASH_REDIS_REST_URL_KV_REST_API_TOKEN = 'test-token';
-  installSharedRedis();
+  process.env.BLACKLIST_PASSWORD = 'dore2026';
   const handlers = loadHandlers();
+  const rejectedLogin = response();
+  await handlers.login(loginRequest('correct horse battery staple'), rejectedLogin);
+  assert.equal(rejectedLogin.statusCode, 401);
+
   const loginResponse = response();
-  await handlers.login(loginRequest('correct horse battery staple'), loginResponse);
+  await handlers.login(loginRequest('dore2026'), loginResponse);
   assert.equal(loginResponse.statusCode, 200);
 });
 
@@ -250,6 +226,5 @@ test('the deployment Markdown is outside the deployment root and has a 404 route
 
 test.after(() => {
   restoreEnvironment();
-  globalThis.fetch = originalFetch;
   clearBlacklistModules();
 });
