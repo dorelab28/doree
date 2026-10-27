@@ -42,7 +42,14 @@ const catalog = sourceProducts.map(product => {
   };
 });
 
-module.exports = catalog;
-module.exports.blacklistPrice = blacklistPrice;
-module.exports.demoLevels = demoLevels;
-module.exports.demoPrice = demoPrice;
+function hiddenCatalogHelperEndpoint(request, response) {
+  response.setHeader('Cache-Control', 'no-store, max-age=0, must-revalidate');
+  response.status(404).end();
+}
+
+module.exports = Object.assign(hiddenCatalogHelperEndpoint, {
+  catalog,
+  blacklistPrice,
+  demoLevels,
+  demoPrice
+});
