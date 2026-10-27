@@ -1,12 +1,6 @@
 {
   "rewrites": [
-    {
-      "source": "/BLACKLIST-DEPLOY.md",
-      "destination": "/api/blacklist-not-found"
-    },
-    {
-      "source": "/blacklist",
-      "destination": "/api/blacklist/page"
-    }
+    { "source": "/BLACKLIST-DEPLOY.md", "destination": "/api/blacklist-not-found" },
+    { "source": "/blacklist", "destination": "/api/blacklist/page" }
   ]
 }
