@@ -6,11 +6,11 @@
     if (!target || document.querySelector('[data-blacklist-entry]')) return;
 
     const link = document.createElement('a');
-    link.href = 'blacklist-access.html';
+    link.href = '/blacklist';
     link.className = 'blacklist-entry';
     link.dataset.blacklistEntry = '';
-    link.setAttribute('aria-label', 'Acceso secreto a BLACKLIST');
-    link.title = 'Acceso secreto a BLACKLIST';
+    link.setAttribute('aria-label', 'Abrir BLACKLIST');
+    link.title = 'Abrir BLACKLIST';
     link.innerHTML = '<img src="assets/blacklist-detective-cookie.svg" width="44" height="44" alt="" aria-hidden="true">';
     if (headerActions) headerActions.prepend(link);
     else catalogLink.before(link);

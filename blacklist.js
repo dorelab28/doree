@@ -1,7 +1,6 @@
 (() => {
   const grid = document.querySelector('[data-blacklist-grid]');
   const intro = document.querySelector('[data-blacklist-intro]');
-  const logout = document.querySelector('[data-blacklist-logout]');
   const cartPanel = document.querySelector('[data-blacklist-cart]');
   const overlay = document.querySelector('[data-blacklist-overlay]');
   const detailDialog = document.querySelector('[data-blacklist-detail]');
@@ -194,10 +193,6 @@
   const loadCatalog = async () => {
     try {
       const response = await fetch('/api/blacklist/catalog', { credentials: 'same-origin', cache: 'no-store', headers: { Accept: 'application/json' } });
-      if (response.status === 401) {
-        window.location.replace('/blacklist-access.html');
-        return;
-      }
       if (!response.ok) throw new Error('catalog unavailable');
       const payload = await response.json();
       if (!Array.isArray(payload.catalog) || !Array.isArray(payload.demoLevels)) throw new Error('invalid catalog');
@@ -338,15 +333,6 @@
       if (detailDialog?.open) closeDetail();
     }
   });
-  logout?.addEventListener('click', async () => {
-    logout.disabled = true;
-    try {
-      await fetch('/api/blacklist/logout', { method: 'POST', credentials: 'same-origin', cache: 'no-store' });
-    } finally {
-      window.location.replace('/blacklist-access.html');
-    }
-  });
-
   const runIntro = () => {
     if (reducedMotion.matches) {
       intro?.classList.add('is-complete');
