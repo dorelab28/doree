@@ -4,6 +4,17 @@
 const publicPrices = require('../public-prices');
 
 const blacklistPrice = publicPrice => Number.isFinite(publicPrice) ? publicPrice * 2 : null;
+const demoLevels = Object.freeze([
+  Object.freeze({ id: 'soft', code: 'LEVEL 01', label: 'SOFT', description: 'Nivel suave', priceAdjustment: 0 }),
+  Object.freeze({ id: 'medium', code: 'LEVEL 02', label: 'MEDIUM', description: 'Nivel medio', priceAdjustment: 1000 }),
+  Object.freeze({ id: 'strong', code: 'LEVEL 03', label: 'STRONG', description: 'Nivel fuerte', priceAdjustment: 2500 })
+]);
+
+const demoLevelById = levelId => demoLevels.find(level => level.id === levelId) || null;
+const demoPrice = (basePrice, levelId) => {
+  const level = demoLevelById(levelId);
+  return Number.isFinite(basePrice) && level ? basePrice + level.priceAdjustment : null;
+};
 
 const sourceProducts = [
   { id: 'chips', caseId: 'FILE 001', originalName: 'New York', alias: 'THE OUTLAW', image: 'assets/cream-updated-new-york.webp', description: 'La fórmula clásica New York, repleta de chips y doble chocolate.', formula: 'Masa estilo New York · vainilla · chips de chocolate con leche y semiamargo · cobertura bicolor.' },
@@ -33,3 +44,5 @@ const catalog = sourceProducts.map(product => {
 
 module.exports = catalog;
 module.exports.blacklistPrice = blacklistPrice;
+module.exports.demoLevels = demoLevels;
+module.exports.demoPrice = demoPrice;
