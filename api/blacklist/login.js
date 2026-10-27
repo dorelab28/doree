@@ -1,6 +1,5 @@
 const {
   authIsConfigured,
-  consumeLoginAttempt,
   createSession,
   isSameOriginRequest,
   makeCookie,
@@ -13,12 +12,6 @@ module.exports = async function handler(request, response) {
   if (request.method !== 'POST') return methodNotAllowed(response, ['POST']);
   if (!isSameOriginRequest(request)) return sendJson(response, 403, { error: 'ACCESS_DENIED' });
   if (!authIsConfigured()) return sendJson(response, 503, { error: 'AUTH_UNAVAILABLE' });
-
-  // Every attempt consumes a token before the password is evaluated. The
-  // distributed limiter must be available; otherwise access fails closed.
-  const attempt = await consumeLoginAttempt(request);
-  if (!attempt.available) return sendJson(response, 503, { error: 'RATE_LIMIT_UNAVAILABLE' });
-  if (attempt.limited) return sendJson(response, 429, { error: 'ACCESS_DENIED' });
 
   let password;
   try {
