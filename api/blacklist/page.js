@@ -12,12 +12,16 @@ const document = `<!doctype html>
   <script src="/blacklist.js" defer></script>
 </head>
 <body class="blacklist-page">
+  <canvas class="blacklist-matrix" data-blacklist-matrix aria-hidden="true"></canvas>
   <div class="blacklist-noise" aria-hidden="true"></div>
   <main class="blacklist-shell">
     <header class="blacklist-header">
       <a class="blacklist-mark" href="/" aria-label="Volver a Doré Lab">DORÉ LAB<span>//</span> BLACKLIST</a>
       <div class="blacklist-status" aria-label="Estado del sistema"><i></i> SECURE CHANNEL / ESTABLISHED</div>
-      <button class="blacklist-logout" type="button" data-blacklist-logout>CLOSE SESSION</button>
+      <div class="blacklist-header-actions">
+        <button class="blacklist-order-trigger" type="button" data-blacklist-open-cart aria-label="Abrir mi pedido">MY ORDER <b data-blacklist-cart-count>00</b></button>
+        <button class="blacklist-logout" type="button" data-blacklist-logout>CLOSE SESSION</button>
+      </div>
     </header>
     <section class="blacklist-intro" data-blacklist-intro aria-live="polite">
       <p class="terminal-line">&gt; ACCESS GRANTED</p>
@@ -41,6 +45,24 @@ const document = `<!doctype html>
     </section>
     <footer class="blacklist-footer"><span>© DORÉ LAB / INTERNAL ACCESS ONLY</span><span>SESSION EXPIRES AUTOMATICALLY</span></footer>
   </main>
+  <aside class="blacklist-cart" data-blacklist-cart aria-hidden="true" aria-label="Mi pedido BLACKLIST">
+    <header class="blacklist-panel-header"><div><p>ORDER BUFFER / DEMO</p><h2>MY ORDER</h2></div><button type="button" data-blacklist-close-cart aria-label="Cerrar pedido">×</button></header>
+    <div class="blacklist-cart-items" data-blacklist-cart-items></div>
+    <div class="blacklist-cart-empty" data-blacklist-cart-empty><span>∅</span><b>NO FILES QUEUED</b><p>Agregá un expediente para simular el pedido.</p></div>
+    <footer class="blacklist-cart-footer" data-blacklist-cart-footer>
+      <div class="blacklist-cart-meta"><span>TOTAL UNITS</span><b data-blacklist-cart-units>00</b></div>
+      <div class="blacklist-cart-total"><span>REFERENCE TOTAL</span><b data-blacklist-cart-total>$0</b></div>
+      <button class="blacklist-clear-cart" type="button" data-blacklist-clear-cart>EMPTY BUFFER</button>
+      <button class="blacklist-checkout-disabled" type="button" disabled>ORDERS LOCKED — DEMO MODE</button>
+      <p>Las operaciones comerciales de esta línea permanecen deshabilitadas hasta verificar autorizaciones y composición.</p>
+    </footer>
+  </aside>
+  <div class="blacklist-overlay" data-blacklist-overlay></div>
+  <dialog class="blacklist-detail" data-blacklist-detail aria-labelledby="blacklist-detail-title">
+    <button class="blacklist-dialog-close" type="button" data-blacklist-close-detail aria-label="Cerrar ficha">×</button>
+    <div data-blacklist-detail-content></div>
+  </dialog>
+  <p class="blacklist-toast" data-blacklist-toast role="status" aria-live="polite"></p>
 </body>
 </html>`;
 
