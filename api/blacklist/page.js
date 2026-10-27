@@ -19,7 +19,7 @@ const document = `<!doctype html>
       <a class="blacklist-mark" href="/" aria-label="Volver a Doré Lab">DORÉ LAB<span>//</span> BLACKLIST</a>
       <div class="blacklist-status" aria-label="Estado del sistema"><i></i> SECURE CHANNEL / ESTABLISHED</div>
       <div class="blacklist-header-actions">
-        <button class="blacklist-order-trigger" type="button" data-blacklist-open-cart aria-label="Abrir mi pedido">MY ORDER <b data-blacklist-cart-count>00</b></button>
+        <button class="blacklist-order-trigger" type="button" data-blacklist-open-cart aria-label="Abrir buffer demostrativo">DEMO BUFFER <b data-blacklist-cart-count>00</b></button>
         <button class="blacklist-logout" type="button" data-blacklist-logout>CLOSE SESSION</button>
       </div>
     </header>
@@ -27,6 +27,16 @@ const document = `<!doctype html>
       <p class="terminal-line">&gt; ACCESS GRANTED</p>
       <p class="terminal-line">&gt; IDENTITY OVERRIDDEN</p>
       <p class="terminal-line">&gt; DECRYPTING UNDERGROUND MENU<span class="terminal-cursor">_</span></p>
+    </section>
+    <section class="blacklist-notice" aria-labelledby="blacklist-notice-title">
+      <div class="blacklist-notice-heading">
+        <p class="blacklist-kicker">◈ INFORMATIONAL ARCHIVE</p>
+        <h2 id="blacklist-notice-title">BLACKLIST // SPECIAL PRODUCT NOTICE</h2>
+        <span class="blacklist-demo-badge">STATUS: DEMO MODE — ORDERS DISABLED</span>
+      </div>
+      <p class="blacklist-notice-copy">Esta sección está destinada a presentar una línea conceptual de cookies con THC (tetrahidrocannabinol), el componente psicoactivo del cannabis, también conocido como marihuana. Los efectos de los comestibles pueden tardar en aparecer, variar entre personas y prolongarse durante varias horas. No conduzcas ni combines estos productos con alcohol. Mantenelos fuera del alcance de niños y mascotas.</p>
+      <div class="blacklist-advance-notice"><span aria-hidden="true">◷</span><div><b>ADVANCE NOTICE: 72 HOURS</b><p>Los pedidos de esta línea requieren un mínimo de 3 días de anticipación. Este plazo es una condición prevista para el concepto de BLACKLIST y no constituye una confirmación de disponibilidad ni de aceptación del pedido.</p></div></div>
+      <details class="blacklist-safety-info"><summary>SAFETY INFORMATION <span>+</span></summary><div><ul><li>Los efectos pueden tardar en aparecer y variar según la persona y el producto. No consumas más porque el efecto no se perciba inmediatamente.</li><li>No conduzcas ni operes maquinaria bajo sus efectos. No combines con alcohol ni otras sustancias psicoactivas.</li><li>Conservá los productos fuera del alcance de niños y mascotas.</li><li>Los ingredientes y alérgenos se informan solamente cuando estén verificados. No se publican concentraciones, resultados de laboratorio ni garantías individuales sin documentación.</li></ul></div></details>
     </section>
     <section class="blacklist-hero">
       <p class="blacklist-kicker">UNAUTHORIZED ARCHIVE / EST. DORÉ LAB</p>
@@ -46,15 +56,15 @@ const document = `<!doctype html>
     <footer class="blacklist-footer"><span>© DORÉ LAB / INTERNAL ACCESS ONLY</span><span>SESSION EXPIRES AUTOMATICALLY</span></footer>
   </main>
   <aside class="blacklist-cart" data-blacklist-cart aria-hidden="true" aria-label="Mi pedido BLACKLIST">
-    <header class="blacklist-panel-header"><div><p>ORDER BUFFER / DEMO</p><h2>MY ORDER</h2></div><button type="button" data-blacklist-close-cart aria-label="Cerrar pedido">×</button></header>
+    <header class="blacklist-panel-header"><div><p>REFERENCE BUFFER / DEMO</p><h2>MY DEMO</h2></div><button type="button" data-blacklist-close-cart aria-label="Cerrar buffer demostrativo">×</button></header>
     <div class="blacklist-cart-items" data-blacklist-cart-items></div>
-    <div class="blacklist-cart-empty" data-blacklist-cart-empty><span>∅</span><b>NO FILES QUEUED</b><p>Agregá un expediente para simular el pedido.</p></div>
+    <div class="blacklist-cart-empty" data-blacklist-cart-empty><span>∅</span><b>NO DEMO FILES QUEUED</b><p>Abrí un expediente y elegí una variante demostrativa.</p></div>
     <footer class="blacklist-cart-footer" data-blacklist-cart-footer>
       <div class="blacklist-cart-meta"><span>TOTAL UNITS</span><b data-blacklist-cart-units>00</b></div>
-      <div class="blacklist-cart-total"><span>REFERENCE TOTAL</span><b data-blacklist-cart-total>$0</b></div>
+      <div class="blacklist-cart-total"><span>ILLUSTRATIVE TOTAL</span><b data-blacklist-cart-total>$0</b></div>
       <button class="blacklist-clear-cart" type="button" data-blacklist-clear-cart>EMPTY BUFFER</button>
       <button class="blacklist-checkout-disabled" type="button" disabled>ORDERS LOCKED — DEMO MODE</button>
-      <p>Las operaciones comerciales de esta línea permanecen deshabilitadas hasta verificar autorizaciones y composición.</p>
+      <p>ADVANCE NOTICE: 72 HOURS. Es una condición conceptual, no una confirmación de disponibilidad. Las operaciones comerciales, pagos y envíos permanecen deshabilitados.</p>
     </footer>
   </aside>
   <div class="blacklist-overlay" data-blacklist-overlay></div>
