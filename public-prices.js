@@ -1,5 +1,4 @@
-/* Single source of truth for the public Cookie XL prices.
- * BLACKLIST derives its reference prices from this table on the server. */
+/* Single source of truth for the public Cookie XL prices. */
 const DORELAB_PUBLIC_COOKIE_PRICES = Object.freeze({
   chips: 4500,
   nutella: 6000,
