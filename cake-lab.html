@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073b78">
+  <meta name="description" content="DORÉ CAKE LAB: diseñá tu propia torta y enviá tu fórmula al laboratorio.">
+  <title>DORÉ CAKE LAB | Diseñá tu propia torta</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="cake-lab.css">
+  <script src="app.js" defer></script>
+  <script src="cake-lab-catalog.js" defer></script>
+  <script src="cake-lab.js" defer></script>
+</head>
+<body class="page-cake-lab">
+  <div class="announcement">🧪 CAKE LAB · guardamos tu fórmula automáticamente mientras creás</div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Doré Lab, inicio"><img src="assets/logo.png" alt="Doré Lab"><span><b>doré lab</b><small>dulces experimentos</small></span></a>
+    <nav aria-label="Navegación principal">
+      <a href="cookies.html">Cookies XL</a><a href="bars.html">Doré Bars</a><a href="boxes.html">Boxes</a><a href="tortas.html">Tortas</a><a href="cake-lab.html" aria-current="page">Cake Lab</a><a href="entregas.html">Entregas</a>
+    </nav>
+    <div class="header-actions"><button class="cart-button" type="button" data-open-cart aria-label="Abrir carrito"><span>Orden</span><b data-cart-count>0</b></button></div>
+  </header>
+
+  <main data-cake-lab>
+    <section class="cake-lab-intro">
+      <div><p class="cake-lab-kicker">EXPEDIENTE 009 · INTERACTIVO</p><h1>DORÉ<br><em>CAKE LAB</em></h1><p>Tu torta. Tus reglas. Tu fórmula.</p></div>
+      <div class="intro-note"><span>✦</span><b>Elegí, decorá y probá.</b><small>Todo cambia en tiempo real.</small></div>
+    </section>
+
+    <section class="cake-lab-shell" aria-label="Diseñador interactivo de tortas">
+      <aside class="cake-lab-steps" aria-label="Etapas de tu fórmula" data-lab-tabs></aside>
+
+      <section class="cake-lab-editor">
+        <div class="lab-editor-head">
+          <div><p data-lab-eyebrow>01 · ESTRUCTURA</p><h2 data-lab-title>Forma y tamaño</h2></div>
+          <button class="lab-reset" type="button" data-reset-design>Reiniciar fórmula</button>
+        </div>
+        <p class="lab-editor-description" data-lab-description>Empezá por la base de tu experimento.</p>
+        <div class="lab-controls" data-lab-controls></div>
+        <div class="lab-next-row"><span data-lab-hint>Tu fórmula está tomando forma.</span><button class="lab-next" type="button" data-next-tab>Siguiente etapa →</button></div>
+      </section>
+
+      <section class="cake-lab-preview" aria-label="Vista previa de tu torta">
+        <div class="lab-preview-head">
+          <div><span class="live-dot"></span> VISTA EN VIVO</div>
+          <div class="view-switch" role="group" aria-label="Vista de la torta"><button type="button" data-view="front" class="is-active">Frontal</button><button type="button" data-view="top">Superior</button></div>
+        </div>
+        <div class="lab-stage-wrap">
+          <div class="lab-stage" data-cake-stage tabindex="0" aria-label="Lienzo de tu torta. Elegí un elemento y tocá aquí para colocarlo.">
+            <svg data-cake-svg viewBox="0 0 600 480" role="img" aria-label="Torta personalizable"></svg>
+            <div class="lab-canvas-tip" data-canvas-tip>Elegí una decoración y tocá la torta para colocarla.</div>
+          </div>
+          <div class="zoom-controls" aria-label="Zoom"><button type="button" data-zoom-out aria-label="Alejar">−</button><output data-zoom-label>100%</output><button type="button" data-zoom-in aria-label="Acercar">+</button></div>
+        </div>
+        <div class="selected-object" data-selected-object hidden></div>
+        <div class="lab-history"><button type="button" data-undo disabled>↶ Deshacer</button><button type="button" data-redo disabled>Rehacer ↷</button><span data-lab-status aria-live="polite">Mezclando ingredientes...</span></div>
+      </section>
+
+      <aside class="cake-lab-price" aria-live="polite">
+        <small>PRECIO ESTIMADO</small><b data-price-total>A cotizar</b><p data-price-copy>Los valores se confirman con el laboratorio.</p><div data-price-lines></div>
+        <button class="lab-finish" type="button" data-finish-design>Ver mi obra maestra →</button>
+      </aside>
+    </section>
+
+    <details class="cake-lab-price-note">
+      <summary>Configuración de precios</summary>
+      <p>Los importes viven en <code>cake-lab-catalog.js</code>. Están vacíos a propósito hasta que Doré Lab cargue sus valores reales; así nunca se muestra un precio definitivo inventado.</p>
+    </details>
+  </main>
+
+  <dialog class="cake-result" data-cake-result>
+    <button class="result-close" type="button" data-close-result aria-label="Cerrar">×</button>
+    <div class="result-copy"><p class="cake-lab-kicker">EXPERIMENTO TERMINADO</p><h2>¡TU OBRA MAESTRA<br>ESTÁ LISTA!</h2><p>Guardamos todos los ingredientes de tu fórmula. El laboratorio confirma disponibilidad, detalles y valor final.</p><label>Nombre de tu creación<input data-creation-name maxlength="48" placeholder="Ej. La bomba de Vicky"></label><div class="result-actions"><button class="button secondary" type="button" data-edit-result>Volver a editar</button><button class="button secondary" type="button" data-download-design>Descargar mi diseño</button><button class="button whatsapp" type="button" data-request-cake>Solicitar mi torta</button></div></div>
+    <div class="result-card"><div class="result-image" data-result-image></div><div class="result-formula" data-result-formula></div><b data-result-price>A cotizar</b></div>
+  </dialog>
+
+  <aside class="drawer" data-cart-drawer aria-hidden="true" aria-label="Tu orden">
+    <div class="drawer-head"><div><small>EXPEDIENTE DE COMPRA</small><h2>Tu orden</h2></div><button type="button" data-close-cart aria-label="Cerrar">×</button></div>
+    <div class="cart-items" data-cart-items></div>
+    <div class="cart-empty" data-cart-empty><span>⚗</span><b>Tu orden está vacía</b><p>Agregá una fórmula para comenzar.</p></div>
+    <div class="cart-footer" data-cart-footer>
+      <div class="cart-total"><span>Productos</span><b data-cart-subtotal>$0</b></div>
+      <div class="free-shipping-progress" data-free-shipping-progress><div class="free-shipping-progress-top"><span data-free-shipping-copy>Te faltan $30.000 para envío gratis.</span><b data-free-shipping-percent>0%</b></div><div class="free-shipping-track" aria-hidden="true"><span data-free-shipping-bar></span></div><small>Meta de laboratorio: $30.000</small></div>
+      <label>Entrega o retiro<select data-delivery><option>Envío a domicilio</option><option>Retiro en Tigre</option><option>Retiro en Caseros</option></select></label>
+      <label data-postal-wrap>Código postal<input data-postal-code inputmode="numeric" autocomplete="postal-code" maxlength="8" placeholder="Ej: 1648 o C1425"></label>
+      <div class="shipping-box" data-shipping-box><span data-shipping-status>Ingresá tu código postal para calcular el envío.</span><b data-shipping-cost>$0</b></div>
+      <div class="cart-promo-box" data-cart-promo hidden></div>
+      <div class="cart-total final"><span>Total estimado</span><b data-cart-total>$0</b></div>
+      <button class="button whatsapp" type="button" data-checkout>Enviar pedido por WhatsApp</button>
+      <small>Envíos a CABA y Gran Buenos Aires desde Caseros y Tigre Centro. Envíos desde $3.000.</small>
+    </div>
+  </aside>
+  <div class="overlay" data-overlay></div>
+  <a class="whatsapp-float" href="https://wa.me/5491135231567" target="_blank" rel="noreferrer" aria-label="WhatsApp">◔</a>
+</body>
+</html>
