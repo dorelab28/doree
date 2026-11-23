@@ -9,7 +9,9 @@
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="v2.css">
+  <script src="public-prices.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="shop-experience.js" defer></script>
   <script src="cake-builder.js" defer></script>
 </head>
 <body class="page-tortas">
@@ -132,6 +134,7 @@
           <button type="button" data-open-box="box3"><span>BOX X3 MIXTA</span><b>Desde $13.500</b><small>3 cookies a elección</small></button>
           <button type="button" data-open-box="box6"><span>BOX X6 MIXTA</span><b>Desde $27.000</b><small>6 cookies a elección</small></button>
           <button type="button" data-open-box="box6p"><span>BOX X6 PREMIUM</span><b>Desde $30.000</b><small>6 premium o signature</small></button>
+          <button type="button" data-open-box="box12"><span>BOX X12 MIXTA</span><b>Precio según cookies elegidas</b><small>12 sabores a elección · sin descuento no validado</small></button>
         </div>
       </div>
     </section>
@@ -253,6 +256,7 @@
     <button class="modal-close" type="button" data-close-product aria-label="Cerrar">×</button>
     <div class="product-gallery">
       <img data-detail-main src="" alt="">
+      <div class="product-gallery-thumbs" data-detail-thumbs aria-label="Más fotos del producto"></div>
       <div class="product-photo-note">
         <small>IMAGEN PRINCIPAL</small>
         <p>Fórmula presentada con fondo cremita Doré Lab.</p>
@@ -268,7 +272,7 @@
         <section><small>NIVEL DE ANTOJO</small><div class="flasks">▲ ▲ ▲ ▲ ▲</div></section>
       </div>
       <div class="dossier-result"><span>RESULTADO DEL ENSAYO</span><b>✓ APROBADO</b></div>
-      <div class="dossier-buy"><b data-detail-price></b><button class="button primary" type="button" data-detail-add>Agregar fórmula</button></div>
+      <div class="dossier-buy"><b data-detail-price></b><label class="product-quantity">Cantidad<input data-detail-quantity type="number" min="1" max="20" value="1" inputmode="numeric" aria-label="Cantidad de cookies"></label><button class="button primary" type="button" data-detail-add>Agregar fórmula</button></div>
     </div>
   </dialog>
 
@@ -278,7 +282,7 @@
     <h2 data-box-title>Armá tu box</h2>
     <div class="box-progress"><span data-box-progress></span><b data-box-count>0 / 3</b></div>
     <div class="flavor-picker" data-flavor-picker></div>
-    <div class="box-modal-foot"><div><small>TOTAL PROMO</small><b data-box-price></b></div><button class="button primary" type="button" data-add-box disabled>Agregar box</button></div>
+    <div class="box-modal-foot"><div><small>PRECIO DE SELECCIÓN</small><b data-box-price></b></div><button class="button primary" type="button" data-add-box disabled>Agregar box</button></div>
   </dialog>
 
   <dialog class="cake-modal" data-cake-modal>
