@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073b78">
+  <meta name="description" content="Budines Doré Lab: cuatro sabores artesanales, tres presentaciones y pedidos por WhatsApp.">
+  <title>Budines Doré Lab | Dulces experimentos</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="v2.css">
+  <link rel="stylesheet" href="budines.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-client.js"></script>
+  <script src="budines-data.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="budines.js" defer></script>
+</head>
+<body class="page-budines">
+  <div class="announcement">🧪 Elaboración artesanal · Envíos a CABA y Gran Buenos Aires · Retiros en Tigre y Caseros</div>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Doré Lab, inicio"><img src="assets/logo.png" alt=""><span><b>doré lab</b><small>dulces experimentos</small></span></a>
+    <nav aria-label="Navegación principal">
+      <a href="cookies.html">Cookies XL</a><a href="bars.html">Doré Bars</a><a href="budines.html" aria-current="page">Budines</a><a href="boxes.html">Boxes</a><a href="tortas.html">Tortas</a><a href="entregas.html">Entregas</a>
+    </nav>
+    <div class="header-actions"><button class="cart-button" type="button" data-open-cart aria-label="Abrir carrito"><span>Orden</span><b data-cart-count>0</b></button></div>
+  </header>
+  <main>
+    <section class="budin-hero">
+      <div class="budin-hero-copy"><p class="eyebrow">EXPEDIENTE 006 · HORNEADOS DE AUTOR</p><h1>Budines<br><em>de laboratorio.</em></h1><p>Cuatro recetas para compartir despacio: miga tierna, rellenos generosos y una terminación hecha a mano.</p><a class="button primary" href="#sabores">Elegir mi budín</a><span class="budin-note">Mediano · nuestra presentación principal</span></div>
+      <figure class="budin-hero-image"><img src="assets/budin-nutella.jpg" alt="Budín de chocolate con cobertura de Nutella y avellanas" fetchpriority="high"><figcaption>Horneado en Doré Lab · cobertura artesanal</figcaption></figure>
+    </section>
+    <section class="budin-size-strip" aria-label="Presentaciones"><div><b>Chico</b><span>900 g estimados · 27 × 10 × 7,5 cm</span></div><div><b>Mediano</b><span>1.200 g estimados · 30 × 10 × 9 cm</span></div><div><b>Doble</b><span>2.400 g estimados · dos budineras medianas</span></div></section>
+    <section class="section budines-catalog" id="sabores"><div class="section-heading"><div><p class="eyebrow">CUATRO FÓRMULAS</p><h2>Elegí tu sabor.</h2></div><p>Seleccioná la presentación para ver su precio y sumar el budín a tu orden.</p></div><div class="budin-grid" data-budin-grid></div><p class="budin-footnote">Pesos finales aproximados. El formato doble se prepara y hornea en dos budineras medianas.</p></section>
+    <section class="budin-order-note"><span>✦</span><div><h2>Hechos para compartir.</h2><p>Horneamos cada pedido de manera artesanal. La disponibilidad y la fecha se confirman por WhatsApp.</p></div><a href="entregas.html" class="button secondary">Ver entregas</a></section>
+  </main>
+  <footer><div class="footer-brand"><img src="assets/logo.png" alt=""><p>Dulces experimentos,<br>hechos con amor.</p></div><div><b>Explorá</b><a href="cookies.html">Cookies XL</a><a href="budines.html">Budines</a><a href="tortas.html">Tortas personalizadas</a></div><div><b>Contacto</b><a href="https://wa.me/5491135231567" target="_blank" rel="noreferrer">WhatsApp</a><a href="https://instagram.com/dore_lab" target="_blank" rel="noreferrer">@dore_lab</a></div><small>© 2026 Doré Lab · Experimento aprobado</small></footer>
+  <aside class="drawer" data-cart-drawer aria-hidden="true" aria-label="Tu orden"><div class="drawer-head"><div><small>EXPEDIENTE DE COMPRA</small><h2>Tu orden</h2></div><button type="button" data-close-cart aria-label="Cerrar">×</button></div><div class="cart-items" data-cart-items></div><div class="cart-empty" data-cart-empty><span>⚗</span><b>Tu orden está vacía</b><p>Agregá una fórmula para comenzar.</p></div><div class="cart-footer" data-cart-footer><div class="cart-total"><span>Productos</span><b data-cart-subtotal>$0</b></div><div class="free-shipping-progress" data-free-shipping-progress><div class="free-shipping-progress-top"><span data-free-shipping-copy>Te faltan $30.000 para envío gratis.</span><b data-free-shipping-percent>0%</b></div><div class="free-shipping-track"><span data-free-shipping-bar></span></div><small>Meta de laboratorio: $30.000</small></div><label>Entrega o retiro<select data-delivery><option>Envío a domicilio</option><option>Retiro en Tigre</option><option>Retiro en Caseros</option></select></label><label data-postal-wrap>Código postal<input data-postal-code inputmode="numeric" autocomplete="postal-code" maxlength="8" placeholder="Ej: 1648 o C1425"></label><div class="shipping-box" data-shipping-box><span data-shipping-status>Ingresá tu código postal para calcular el envío.</span><b data-shipping-cost>$0</b></div><div class="cart-promo-box" data-cart-promo hidden></div><div class="cart-total final"><span>Total estimado</span><b data-cart-total>$0</b></div><button class="button whatsapp" type="button" data-checkout>Enviar pedido por WhatsApp</button><small>Los pesos son estimados. Confirmamos disponibilidad al recibir tu pedido.</small></div></aside><div class="overlay" data-overlay></div>
+  <a class="whatsapp-float" href="https://wa.me/5491135231567" target="_blank" rel="noreferrer" aria-label="Escribir a Doré Lab por WhatsApp">✆</a>
+</body>
+</html>
